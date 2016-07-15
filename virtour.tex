@@ -55,11 +55,40 @@ Peter Stone
   This is my abstract
 \end{abstract}
 
-\keywords{robotics, telepresence, remote control, virtual tours}
+\keywords{robots, telepresence, remote control, virtual tours}
 
 \section{Introduction}
 
 \section{Related Work}
+
+\section{Robot Platform}
+
+Virtour is made to be run on the Building Wide Intelligence Project's segbot
+robot platform {CITE}. These robots are designed to be fully autonomous and
+cohabitate the Gates Dell Complex Computer Science building with the humans
+within. The segbot robot platform has three currently operation versions. Our
+last generation version 2 robots, a version 2 with an additional Kinova arm,
+and our latest generation version 3 robots. Although virtour supports all three
+versions, it is mostly run on the latest generation so that is what is
+described.
+
+\subsection{Hardware Platform}
+
+The robot's base is a Segway Robotipcs Mobility Platform (RMP) {CITE}, which is
+powered by a lithium-ion battery pack. The frame was designed in-house and
+supports a wide array of sensors. For navigation, localization, and obstacle
+avoidance, we use a Velodyne Puck lidar. Point clouds and RGB data is provided
+by a Microsoft Kinect. Our latest generation robots also have a laser range
+finder to compensate for the lidar's blind spots. The robot is equipped with a
+custom-built computer which runs Ubuntu 14.04. The computer is powered by the
+RMPs battery, thus removing the need for an external car battery (which was
+present in our version 2 robots).  The battery life on a running robot is
+approximately 6 hours.
+
+\subsection{Software Stack}
+
+Our robots are powered by the Robot Operating System (ROS) {CITE}. {GET MORE
+INFO FROM SOME ONE"S PAPER}
 
 \section{The Web Client}
 
