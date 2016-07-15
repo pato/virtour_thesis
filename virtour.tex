@@ -141,13 +141,81 @@ currently active and available robots (more on server implementation later).
 From here our user can select a robot to connect to (by clicking on the robot's
 name and image) to initate a virtual tour session. Tour sessions can be either
 led or spectated. Each tour can have at most one leader, but no limit on the
-number of spectators. If the tour has no existing leader and tours 
+number of spectators. If the tour has no existing leader and tours are allowed
+then a visiting user can elect to become tour leader by pressing the ``Become
+Leader'' button. Upon success, it will present the user with the leader UI.
 
 \subsection{Leader UI}
 
+The leader UI adds a number of components to the guest UI that allow the user to
+control the operations of the robot. The current list of available capabilities
+is as follows
+
+\begin{itemize}
+  \item Rotate the robot's base
+  \item Navigate to a room on the same floor
+  \item Navigate to a door on the same floor
+  \item Speak a message (using text-to-speech)
+  \item Deliver a spoken message (using text-to-speech) to a location
+  \item Pause and resume a robot task
+  \item Move the robot's camera (on supported robots)
+\end{itemize}
+
+The user can interact with the interface to request any of the previously
+mentioned tasks.
+
+Whenever a user first connects to a robot, the web client will query the robot
+for the capabilities that it has (eg: which generation robot, which cameras it
+has access to, if the camera has servos, etc...) and then adapt the user
+interface accordingly to support whathever robot the user is connected to.
+
+The leader UI was developed using javascript and uses sockets to
+communicate with the robot. The javascript client can interact with ROS via the
+socket to make service calls, subscribe and publish to topics, as well as make
+actionlib requests. Regardless of the type of the request, it is serialized and
+transferred over the socket to be interpreted by the server (described in a
+later section).
+
+In order to maintain leader consistency, the leader UI will ping the server at
+a known interval to ensure the leader is still connected. If the user closes
+the window or the ping fails, the leader will relinquish the leader status so
+other users can control robot.
+
+For security reasons, we only allow outside parties to become leaders (and thus
+have control of the robot's operations) if we explicitly enable virtual tours
+on the robot. Furthermore, all leader operations that affect the robot (eg:
+rotating, or navigating) require user authentication, to prevent unauthorized
+sources to take control of our robots. On the client side, this means that each
+user is assigned a unique identifier (valid only for the current session).
+Whenever a user requests leadership, they request it for their unique
+identifier. All subsequent requests are made using this identifier to ensure
+that only an authorized user can control the robot.
+
 \subsection{Guest UI}
 
+The guest UI is the default interface presented to the user whenever he or she
+connects to a robot. It dominated by the live stream from the robot's camera
+which is shown prominently in the center. The robot's camera is placed in a
+position on the robot that makes the user experience feel like a point of view
+camera. This makes the experience more immersive and the tour more engaging.
+
+Furthermore, the interface also displays a mini map of which ever floor the
+robot is on, with a position marker to indicate the robot's current position.
+This map is updated whenver the robot switches floors (via the elevator) to
+show the most up to date map of the current floor.
+
+Finally, the guest UI has a status box which displays whether or not a tour is
+on-going, allowed, or disabled. From here the user can request to become tour
+leader (if available), or wait for a tour to be available.
+
+All our robots support the guest UI during all times we are running them, so
+that users can remotely connect to the robots and experience what they are
+doing.
+
 \section{The Server}
+
+The server consists of a number of components which run on the physical robot
+to enable the web client to perform the required operations.
 
 \subsection{Tour Manager}
 
