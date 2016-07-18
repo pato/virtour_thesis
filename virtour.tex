@@ -102,6 +102,12 @@ version 2 with an additional Kinova arm, and our latest generation version 3
 robots. Although virtour supports all three versions, it is mostly run on the
 latest generation so that is what is described.
 
+\begin{figure}
+\centering
+\includegraphics[height=2in]{bwi}
+\caption{Two of our second generation BWI robots}
+\end{figure}
+
 \subsection{Hardware Platform}
 
 The robot's base is a Segway Robotics Mobility Platform (RMP), which is
@@ -130,6 +136,12 @@ sensor readings to send commands to the segway base and avoid any obstacles.
 
 \section{The Web Client}
 
+\begin{figure}
+\centering
+\includegraphics[height=2in]{virtour_client}
+\caption{Overview of the virtour client structure and hierarchy}
+\end{figure}
+
 Virtour consists of two platforms, the user facing client, and the server
 and associated software that runs on the robots. The user client is built using
 web 2.0 technologies to adhere to modern web development trends and
@@ -156,6 +168,12 @@ led or spectated. Each tour can have at most one leader, but no limit on the
 number of spectators. If the tour has no existing leader and tours are allowed
 then a visiting user can elect to become tour leader by pressing the ``Become
 Leader'' button. Upon success, it will present the user with the leader UI.
+
+\begin{figure}
+\centering
+\includegraphics[height=2in]{tour_homepage}
+\caption{Landing page whenever someone visits the home page}
+\end{figure}
 
 \subsection{Leader UI}
 
@@ -205,6 +223,12 @@ that only an authorized user can control the robot.
 
 \subsection{Guest UI}
 
+\begin{figure}
+\centering
+\includegraphics[height=2in]{guestUI}
+\caption{What the client sees whenever they are in guest mode}
+\end{figure}
+
 The guest UI is the default interface presented to the user whenever he or she
 connects to a robot. It dominated by the live stream from the robot's camera
 which is shown prominently in the center. The robot's camera is placed in a
@@ -233,17 +257,62 @@ doing.
 \end{figure}
 
 The server consists of a number of components which run on the physical robot
-to enable the web client to perform the required operations.
+to enable the web client to perform the required operations. All communications
+from the web client hit the \verb|ros_bridge| node, which then translates the
+commands to ROS commands. From there, all requests are sent to the tour
+manager, which will authenticate the requests (to ensure they are validly
+formed and come from an accepted source) and then triage them to their
+respective service providers.
 
 \subsection{Tour Manager}
 
-\subsubsection{Leader Management}
-
-\subsubsection{Robot Control}
+The tour manager serves the role of maintaining tour integrity and managing
+active connections with all the clients that are connected to the robot. It
+keeps track of an internal state machine which controls whether tours are
+enabled and if so whether they are active. It will also maintain connection
+with the tour leader through pings to ensure the leader remains alive. If the
+leader disconnects (by closing the page) or is disconnected (missing a ping),
+the tour manager will demote them and open up the tour again. The tour manager
+will also grant tour leader status to clients that properly request it whenever
+tours are enabled.
 
 \subsubsection{Authentication}
 
+Due to the open nature of virtour (anyone can access/control our robots),
+security became an important factor.User authentication is done by generating a
+unique identifier to each client connected (generation is done client-side).
+This identifier is used to keep track of all the clients and the leader. All
+requests which control robot (ie: navigating, rotating, delivering messages) go
+through the authentication server. This verifies that the request is properly
+created, is coming from a valid leader, and is being executed at a time when
+tours are enabled. There is a 15 minute limit per leader, to avoid
+a single leader taking control of the system. Finally, we always have the
+option to disable tours (via the tour manager) which will immediately evict any
+active leaders and restore control of the robot.
+
+\subsubsection{Robot Control}
+
+
+
+
 \subsection{IP management}
+
+In order to manage the IP addresses of all the robots, we created smallDNS
+(small multi-agent locally listable DNS). SmallDNS keeps track of the IP
+addresses of each of the robots (which are assigned via DHCP and are thus
+variable). Furthermore, it also keeps track of which robots are available and
+running via series of pings. This means that the end user does not need to
+worry about the IPs of the robots or which ones are alive. So when the user
+visits the home page (figure 3), they will see the list of currently active
+robots and will be able to connect to each without having to know the IP
+address.
+
+SmallDNS consists of a simple DNS server running on our master server in the
+lab, and a cronjob that runs on each of the robots. That way if the robot
+detects that it has changed IP address, it will inform the server. As time
+passes, the server will try to ping all the active robots to ensure that they
+are still alive. SmallDNS serves the state of its IP database in json
+format, which is what virtuour ultimately uses.
 
 \section{Scavenger Hunt Integration}
 
