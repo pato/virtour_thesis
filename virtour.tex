@@ -292,8 +292,19 @@ active leaders and restore control of the robot.
 
 \subsubsection{Robot Control}
 
-
-
+The server-side code powering the remote robot control consist of various
+service providers which use the tour manager to authenticate requests, and then
+triage them to the appropriate robot commands. For example, the rotate control
+will take the rotate command (if properly authenticated) and then translate it
+to raw segway base navigation commands, which is considered safe because
+rotation stays within the robot's footprint so we do not need to consider
+obstacle avoidance. However, obstacle avoidance is very important whenever we
+are navigating to rooms or doors. For this reason, all navigation commands will
+go to the logical planner in the form of ASP goals. For example a request to
+navigate to a specific office will be turned into an ASP goal such that it is
+impossible for the robot to not be in that location. The navigation and
+planning stack then take over and will perform the planning and navigation
+required to accomplish the goal.
 
 \subsection{IP management}
 
