@@ -63,8 +63,8 @@ The University of Texas at Austin has a constant stream of visitors and tours
 of the beautiful campus. Of special interest to us, are the large number of
 tours given at our computer science building: the Gates Dell Complex (GDC). The
 tour guests range in ages and backgrounds, and tend to be prospective students
-to both undergraduate and gradute programs, or visiting faculty. Unfortunately,
-there is a large population of prespective students that are unable to
+to both undergraduate and gradate programs, or visiting faculty. Unfortunately,
+there is a large population of prospective students that are unable to
 physically come to our campus and are thus unable to partake in the
 conventional tours.
 
@@ -100,7 +100,7 @@ described.
 
 \subsection{Hardware Platform}
 
-The robot's base is a Segway Robotipcs Mobility Platform (RMP) {CITE}, which is
+The robot's base is a Segway Robotics Mobility Platform (RMP) {CITE}, which is
 powered by a lithium-ion battery pack. The frame was designed in-house and
 supports a wide array of sensors. For navigation, localization, and obstacle
 avoidance, we use a Velodyne Puck lidar. Point clouds and RGB data is provided
@@ -121,7 +121,7 @@ INFO FROM SOME ONE"S PAPER}
 Virtour consists of two platforms, the user facing client, and the server
 and associated software that runs on the robots. The user client is built using
 web 2.0 technologies to adhere to modern web development trends and
-simulatniously support as many platforms as possible. We decided to use a
+simultaneously support as many platforms as possible. We decided to use a
 web-based client because of the increasing prominence of web browsers in
 people's lives. Furthermore, a web based approach means that our end-users do
 not have to install any additional software to connect with or use the robots,
@@ -139,7 +139,7 @@ device.
 When a user first visits our website, he or she is greeted by a list of our
 currently active and available robots (more on server implementation later).
 From here our user can select a robot to connect to (by clicking on the robot's
-name and image) to initate a virtual tour session. Tour sessions can be either
+name and image) to initiate a virtual tour session. Tour sessions can be either
 led or spectated. Each tour can have at most one leader, but no limit on the
 number of spectators. If the tour has no existing leader and tours are allowed
 then a visiting user can elect to become tour leader by pressing the ``Become
@@ -167,7 +167,7 @@ mentioned tasks.
 Whenever a user first connects to a robot, the web client will query the robot
 for the capabilities that it has (eg: which generation robot, which cameras it
 has access to, if the camera has servos, etc...) and then adapt the user
-interface accordingly to support whathever robot the user is connected to.
+interface accordingly to support whichever robot the user is connected to.
 
 The leader UI was developed using javascript and uses sockets to
 communicate with the robot. The javascript client can interact with ROS via the
@@ -201,7 +201,7 @@ camera. This makes the experience more immersive and the tour more engaging.
 
 Furthermore, the interface also displays a mini map of which ever floor the
 robot is on, with a position marker to indicate the robot's current position.
-This map is updated whenver the robot switches floors (via the elevator) to
+This map is updated whenever the robot switches floors (via the elevator) to
 show the most up to date map of the current floor.
 
 Finally, the guest UI has a status box which displays whether or not a tour is
@@ -213,6 +213,12 @@ that users can remotely connect to the robots and experience what they are
 doing.
 
 \section{The Server}
+
+\begin{figure}
+\centering
+\includegraphics[height=2in]{virtour_server}
+\caption{Overview of the virtour server structure and hierarchy}
+\end{figure}
 
 The server consists of a number of components which run on the physical robot
 to enable the web client to perform the required operations.
