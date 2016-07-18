@@ -138,7 +138,7 @@ sensor readings to send commands to the segway base and avoid any obstacles.
 
 \begin{figure}
 \centering
-\includegraphics[height=2in]{virtour_client}
+\includegraphics[width=3in]{virtour_client}
 \caption{Overview of the virtour client structure and hierarchy}
 \end{figure}
 
@@ -171,7 +171,7 @@ Leader'' button. Upon success, it will present the user with the leader UI.
 
 \begin{figure}
 \centering
-\includegraphics[height=2in]{tour_homepage}
+\includegraphics[width=3in]{tour_homepage}
 \caption{Landing page whenever someone visits the home page}
 \end{figure}
 
@@ -252,7 +252,7 @@ doing.
 
 \begin{figure}
 \centering
-\includegraphics[height=2in]{virtour_server}
+\includegraphics[width=3in]{virtour_server}
 \caption{Overview of the virtour server structure and hierarchy}
 \end{figure}
 
@@ -326,6 +326,25 @@ are still alive. SmallDNS serves the state of its IP database in json
 format, which is what virtuour ultimately uses.
 
 \section{Scavenger Hunt Integration}
+
+\begin{figure}
+\centering
+\includegraphics[width=3in]{scav_certs}
+\caption{Screenshot of scavenger hunt task status and certificate display}
+\end{figure}
+
+Intro about scavenger hunt.
+
+Whenever a user connects to a robot running the scavenger hunt, virtour will
+additionally allow the users to interact with the scavenger hunt. For example,
+the user can see the list of the currently running tasks by clicking on the
+scavenger hunt button. Furthermore, if a task is completed virtour will use
+its image web server to display the certificate on the website (appears as a
+thumbnail but is expanded whenever clicked on). Finally, if the user is the
+leader, they can also control the operation of scavenger hunt by stopping and
+resuming the current task. That way a user can stop the current scavenger hunt
+task, then navigate the robot elsewhere or perform any other operation, then
+resume the scavenger hunt later.
 
 \section{Conclusions}
 
