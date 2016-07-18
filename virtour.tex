@@ -117,8 +117,16 @@ approximately 6 hours.
 
 \subsection{Software Stack}
 
-Our robots are powered by the Robot Operating System (ROS). {GET MORE
-INFO FROM SOME ONE"S PAPER}
+Our robots are powered by the Robot Operating System (ROS), which provides us
+with the infrastructure to run our robots as a distributed node system. ROS
+also provides us with access to many community packages such as device drivers,
+navigation implementations, and planning systems. Our navigation stack starts
+out with the logical planner, which uses ASP to plan and describe the
+environment (eg: which corridors connect with which hallways, and which doors
+are open). It then moves to the logical navigator which uses the global costmap
+(generated from previous laser readings, and is an adjacency grid of obstacles)
+to create the navigation plan.  Finally, the local planner uses the immediate
+sensor readings to send commands to the segway base and avoid any obstacles.
 
 \section{The Web Client}
 
