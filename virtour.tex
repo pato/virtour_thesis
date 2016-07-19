@@ -1,4 +1,5 @@
 \documentclass{sig-alternate-05-2015}
+\usepackage{hyperref}
 
 \begin{document}
 
@@ -24,35 +25,37 @@ Building-Wide Intelligence Lab}{Austin, Texas}
 
 \title{Virtour: Telepresence system for remotely-operated building tours}
 
-\numberofauthors{5}
+\numberofauthors{1}
 \author{
 % 1st. author
 \alignauthor
 Patricio Lankenau\\
-\email{pato@cs.utexas.edu}
-% 2nd. author
-\alignauthor
-Shiqui Zang
-% 3rd. author
-\email{szhang@cs.utexas.edu}
-\alignauthor
-Jivko Sinapov
-\email{jsinapov@cs.utexas.edu}
-\and 
-% 4th. author
-\alignauthor
-Matteo Leonetti
-\email{m.leonetti@leeds.ac.uk}
-% 5th. author
-\alignauthor
-Peter Stone
-\email{pstone@cs.utexas.edu}
+\email{pato@cs.utexas.edu}\\
+\affaddr{University of Texas at Austin Class of 2016}\\
 }
+%% 2nd. author
+%\alignauthor
+%Shiqui Zang
+%% 3rd. author
+%\email{szhang@cs.utexas.edu}
+%\alignauthor
+%Jivko Sinapov
+%\email{jsinapov@cs.utexas.edu}
+%\and 
+%% 4th. author
+%\alignauthor
+%Matteo Leonetti
+%\email{m.leonetti@leeds.ac.uk}
+%% 5th. author
+%\alignauthor
+%Peter Stone
+%\email{pstone@cs.utexas.edu}
+%}
 \date{August 14 2016}
 
 \maketitle
 \begin{abstract}
-  This is my abstract
+  This is my beautiful abstract which I will write at the end.
 \end{abstract}
 
 \keywords{robots, telepresence, remote control, virtual tours}
@@ -101,6 +104,9 @@ has three currently operating versions. Our last generation version 2 robots, a
 version 2 with an additional Kinova arm, and our latest generation version 3
 robots. Although virtour supports all three versions, it is mostly run on the
 latest generation so that is what is described.
+
+This is why my thesis is so darn long, why won't people just let me type what I
+want to type
 
 \begin{figure}
 \centering
@@ -309,6 +315,7 @@ required to accomplish the goal.
 \subsection{IP management}
 
 In order to manage the IP addresses of all the robots, we created smallDNS
+\footnote{Source code is available at \url{https://github.com/pato/smallDNS}}
 (small multi-agent locally listable DNS). SmallDNS keeps track of the IP
 addresses of each of the robots (which are assigned via DHCP and are thus
 variable). Furthermore, it also keeps track of which robots are available and
@@ -346,7 +353,9 @@ resuming the current task. That way a user can stop the current scavenger hunt
 task, then navigate the robot elsewhere or perform any other operation, then
 resume the scavenger hunt later.
 
-\section{Conclusions}
+\section{Conclusions and Future Work}
+
+Conclusions and future work.
 
 \section{Acknowledgments}
 
