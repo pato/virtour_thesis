@@ -113,29 +113,36 @@ latest generation so that is what is described.
 
 \subsection{Hardware Platform}
 
-The robot's base is a Segway Robotics Mobility Platform (RMP), which is
-powered by a lithium-ion battery pack. The frame was designed in-house and
+The robot's base is a Segway Robotics Mobility Platform (RMP), which is powered
+by a built-in lithium-ion battery pack. The frame was designed in-house and
 supports a wide array of sensors. For navigation, localization, and obstacle
-avoidance, we use a Velodyne Puck lidar. Point clouds and RGB data is provided
-by a Microsoft Kinect. Our latest generation robots also have a laser range
-finder to compensate for the lidar's blind spots. The robot is equipped with a
-custom-built computer which runs Ubuntu 14.04. The computer is powered by the
-RMPs battery, thus removing the need for an external car battery (which was
-present in our version 2 robots).  The battery life on a running robot is
-approximately 6 hours.
+avoidance, we use a Velodyne Puck lidar. Point clouds and RGB data are provided
+by a Microsoft Kinect. Our latest generation robots also have an additional
+laser range finder to compensate for the lidar's blind spots. The robot is
+equipped with a custom-built computer which runs Ubuntu 14.04. The computer is
+powered by the RMPs battery, thus removing the need for an external car battery
+(which was present in our version 2 robots).  The battery life on a running
+robot is approximately 6 hours when actively using the base, and 10 when
+stationary.
 
 \subsection{Software Stack}
 
 Our robots are powered by the Robot Operating System (ROS), which provides us
-with the infrastructure to run our robots as a distributed node system. ROS
-also provides us with access to many community packages such as device drivers,
-navigation implementations, and planning systems. Our navigation stack starts
-out with the logical planner, which uses ASP to plan and describe the
-environment (eg: which corridors connect with which hallways, and which doors
-are open). It then moves to the logical navigator which uses the global costmap
-(generated from previous laser readings, and is an adjacency grid of obstacles)
-to create the navigation plan.  Finally, the local planner uses the immediate
-sensor readings to send commands to the segway base and avoid any obstacles.
+with the infrastructure to run as a distributed node system. It provides the
+messaging framework to connect all the different components. ROS also provides
+us with access to many community packages such as device drivers, navigation
+implementations, and planning systems.
+
+Our navigation stack starts out with the logical planner, which uses ASP to
+plan and describe the environment (eg: which corridors connect with which
+hallways, and which doors are open). It then moves to the logical navigator
+which uses the global costmap (generated from previous laser readings, and is
+an adjacency grid of obstacles) to create the navigation plan.  Finally, the
+local planner uses the immediate sensor readings to send commands to the segway
+base and avoid any obstacles.
+
+All of our software is open source and freely available
+online\footnote{\url{http://github.com/utexas-bwi}}.
 
 \section{The Web Client}
 
@@ -145,18 +152,18 @@ sensor readings to send commands to the segway base and avoid any obstacles.
 \caption{Overview of the virtour client structure and hierarchy}
 \end{figure}
 
-Virtour consists of two platforms, the user facing client, and the server
-and associated software that runs on the robots. The user client is built using
-web 2.0 technologies to adhere to modern web development trends and
-simultaneously support as many platforms as possible. We decided to use a
-web-based client because of the increasing prominence of web browsers in
-people's lives. Furthermore, a web based approach means that our end-users do
-not have to install any additional software to connect with or use the robots,
-thus reducing the friction for trying our service.
+Virtour consists of two platforms, the user facing client, and the server and
+associated software that runs on the robots. The user client is accessible from
+a web browser and is built using web 2.0 technologies to adhere to modern web
+development trends and simultaneously support as many platforms as possible. We
+decided to use a web-based client because of the increasing prominence of web
+browsers in people's lives. Furthermore, a web based approach means that our
+end-users do not have to install any additional software to connect with or use
+the robots, thus reducing the friction for trying our service.
 
 \subsection{Modern Approach}
 
-The website is designed to be simple and functional while still being
+The web client is designed to be simple and functional while still being
 aesthetically pleasing to end users. It uses a grid system, powered by
 Bootstrap 2.0, to create a fully responsive web layout. This allows us to
 support any web-powered platform (eg: mobile devices, tablets, and computers)
@@ -165,12 +172,22 @@ device.
 
 When a user first visits our website, he or she is greeted by a list of our
 currently active and available robots (more on server implementation later).
-From here our user can select a robot to connect to (by clicking on the robot's
-name and image) to initiate a virtual tour session. Tour sessions can be either
-led or spectated. Each tour can have at most one leader, but no limit on the
-number of spectators. If the tour has no existing leader and tours are allowed
-then a visiting user can elect to become tour leader by pressing the ``Become
-Leader'' button. Upon success, it will present the user with the leader UI.
+Each robot is represented by a name and associated picture \footnote{All of our
+robots are named after Futurama characters}. From here our user can select a
+robot to connect to (by clicking on the robot's name or image) to initiate a
+virtual tour session. When the user clicks on the robot, the web client will
+initate a request to the specified robot requesting a tour session.
+Tour sessions can be either led or spectated. The difference is that when
+spectating the user has no control over the robot but can see the video stream,
+robot status, and track the location of the robot along the map. A led tour is
+one one in which the user can actively instruct the robot to perform
+operations. Each tour can have at most one leader, but no limit on the number
+of spectators. We built virtour this way to ensure there is a consistent leader
+experience (so no two people fight for control of the robot), and for security
+reasons, since we can control whether a leader is allowed or not. If the tour
+has no existing leader and tours are allowed then a visiting user can elect to
+become tour leader by pressing the ``Become Leader'' button. Upon success, it
+will present the user with the leader UI.
 
 \begin{figure}
 \centering
@@ -180,7 +197,9 @@ Leader'' button. Upon success, it will present the user with the leader UI.
 
 \subsection{Leader UI}
 
-The leader UI adds a number of components to the guest UI that allow the user to
+(TODO: PICTURE OF LEADER UI)
+
+The leader UI adds a number of components to that allow the user to
 control the operations of the robot. The current list of available capabilities
 is as follows
 
@@ -195,7 +214,10 @@ is as follows
 \end{itemize}
 
 The user can interact with the interface to request any of the previously
-mentioned tasks.
+mentioned tasks. For example, whenever the user is the leader a pair of
+directional arrow buttons is shown which will immediately rotate the robot when
+pressed. Navigation commands are access within the navigation pane (TODO:
+PICTURE OF NAVIGATION PANE)
 
 Whenever a user first connects to a robot, the web client will query the robot
 for the capabilities that it has (eg: which generation robot, which cameras it
