@@ -49,7 +49,7 @@ a virtual tour. Our system is created to balance external control abilities
 while maintaining our rigorous standard of safety and security for the robots
 and people involved. As such it gives the user control of what the robot is
 doing, while at the same time using existing the autonomous navigation
-capabilities and obstacle avoidance.
+capabilities and obstacle avoidance to provide the user with shared autonomy.
 
 \section{Related Work}
 
@@ -160,7 +160,13 @@ will present the user with the leader UI.
 
 \subsection{Leader UI}
 
-(TODO: PICTURE OF LEADER UI)
+\begin{figure}
+\centering
+\includegraphics[width=3in]{leader_ui}
+\caption{The controls available to the leader}
+\end{figure}
+
+
 
 The leader UI adds a number of components to that allow the user to
 control the operations of the robot. The current list of available capabilities
@@ -176,11 +182,16 @@ is as follows
   \item Move the robot's camera (on supported robots)
 \end{itemize}
 
+\begin{figure}
+\centering
+\includegraphics[width=3in]{nav_ui}
+\caption{Navigation interface for leaders}
+\end{figure}
+
 The user can interact with the interface to request any of the previously
 mentioned tasks. For example, whenever the user is the leader a pair of
 directional arrow buttons is shown which will immediately rotate the robot when
-pressed. Navigation commands are access within the navigation pane (TODO:
-PICTURE OF NAVIGATION PANE)
+pressed. Navigation commands are access within the navigation pane
 
 Whenever a user first connects to a robot, the web client will query the robot
 for the capabilities that it has (eg: which generation robot, which cameras it
@@ -345,7 +356,7 @@ Virtour couldn't have been completed with the help and support of my original
 research educator Matteo Leonetti, my current research educator Jivko Sinapov.
 Thank you to Peter Stone for providing direction and for all his support.
 Thanks to Shiqi Zang for helping and me with the scavenger hunt integration.
-Finally, thank you to Walter Sagehorn for helping with smallDNS and to Benjamin
-Singer for developing the message delivery tasks.
+Finally, thank you to Walter Sagehorn for helping develop smallDNS and to
+Benjamin Singer for developing the message delivery tasks.
     
 \end{document}
