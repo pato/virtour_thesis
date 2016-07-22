@@ -15,6 +15,8 @@
 \usepackage{acronym}
 \usepackage{hyperref}
 \usepackage{graphicx}
+\usepackage{apacite}
+\usepackage[utf8]{inputenc}
 \graphicspath{{images/}}
 
 \title{Virtour: Telepresence system for remotely-operated building tours}
@@ -53,6 +55,55 @@ doing, while at the same time using existing the autonomous navigation
 capabilities and obstacle avoidance to provide the user with shared autonomy.
 
 \section{Related Work}
+
+The idea of using advanced robot platform to service web-based tours is not
+entirely new and has been explored in the past. The earliest virtual tour
+system was built to serve as a museum tour guide in 1998 by \cite{burgard1998}.
+Their robot, Rhino, mainly operated as a physically interactive tour guide that
+museum visitors could approach and request tours from, but also supported
+ocasionaly web-based tours where online visitors could vote on certain tours to
+use. Their web-based interface provided images from the on-board camera as well
+as static cameras, and allowed the user to download a Java applet to see
+real-time information. Web control was limited to voting on a desired tour
+(from a pre-programmed list) and viewing the robot's image stream.
+
+Thrun, et al developed a second-generation museum tour-guide robot
+\cite{thrun1999} Minerva, which improved on the work done by Burgard. Most of
+their improvements were around localization, mapping, SLAM, and HRI. They
+improved the virtual tour interface by allowing arbitrary selection of
+navigation goals, rather than a pre-selected list. However, their real-time
+information required the download of a Java web-applet to simulate the robot.
+
+Kim, et al developed Jinny in 2004, which was yet another autonomous tour-guide
+robot \cite{kim2004}.  Of special interest to us, was their upgraded web-based
+interface which allowed the user to interact with the natural language parsing
+system and ask questions, as well as request actions. Their system was built
+using Java, ActiveX, and Javascript, all of which require special installation
+on part of the end user to use.
+
+More recent work virtual tour and telepresence systems were built in 2007
+\cite{michaud2007} and in 2013 \cite{kusu2013}. Kusu, et al's system is of special interest
+because it was built to provide campus tours.
+
+Virtour differs from these related works in various ways. The first is that
+virtour's main purpose is to be a telepresence tour system, and thus gives web
+visitors priority in controlling the robot (unline Rhino or Minerva which only
+ocasionally allow web control). Furthermore, virtour is unique in that it uses
+only modern web standards and does not require the end-user to download any
+extra software (eg: Java, ActiveX). Thus virtour can be truly portable and
+accessed from any computer, tablet, or mobile device. Finally, virtour is also
+unique in that it provides the end-user with real-time video feedback and
+information about the robot. For example, the robot's position will be updated
+on the website in real-time without requiring any additional simulation
+software. Furthermore, the user's actions are performed in real-time and the
+results are shown almost immediately. So if a user requets the robot to rotate,
+he or she will be able to see the robot's camera feed update instantly.  As
+part of virtour's goal of ease of use, it uses bandwidth scaling of video
+streaming to reduce the quality of the video according to the end-user's
+internet connection. Finally, virtour is novel because it provides the end-user
+with a wide variety of ways of interacting with the robot. Rather than just
+providing navgitation and video streaming, it allows the user to deliver spoken
+messages and perform tasks.
 
 \section{Building Wide Intelligence}
 
@@ -359,5 +410,9 @@ Thank you to Peter Stone for providing direction and for all his support.
 Thanks to Shiqi Zang for helping and me with the scavenger hunt integration.
 Finally, thank you to Walter Sagehorn for helping develop smallDNS and to
 Benjamin Singer for developing the message delivery tasks.
+
+\nocite{*}
+\bibliographystyle{apacite}
+\bibliography{citations}
     
 \end{document}
