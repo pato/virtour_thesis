@@ -1,14 +1,6 @@
 all:
-	pdflatex virtour.tex
-bibtex:
-	latex virtour.tex
-	bibtex virtour.aux
-	latex virtour.tex
-	latex virtour.tex
-
-main:
 	pdflatex main.tex
-maintex:
+bibtex:
 	pdflatex main.tex
 	bibtex main.aux
 	pdflatex main.tex
