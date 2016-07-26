@@ -29,69 +29,67 @@
 \section{Introduction}
 
 The University of Texas at Austin has a constant stream of visitors and tours
-of the beautiful campus. Of special interest to us, are the large number of
-tours given at our computer science building: the Gates Dell Complex (GDC). The
-tour guests range in ages and backgrounds, and tend to be prospective students
-to both undergraduate and gradate programs, or visiting faculty. Unfortunately,
-there is a large population of prospective students that are unable to
-physically come to our campus and are thus unable to partake in the
-conventional tours.
-
-Our lab has a group of autonomous wheeled robots which can localize, navigate,
-and perform tasks without human intervention for long periods of time.
-Furthermore, our lab is placed in a central part of our building and is thus a
-common place for tours. As such it only made sense that we utilize the platform
-we have built to try to solve the aforementioned problem.
+of the beautiful campus. Of special interest to us are the large number of
+tours given at our computer science building. The tour guests range in ages and
+backgrounds, and tend to be prospective students to both undergraduate and
+gradate programs, or visiting faculty. Unfortunately, there is a large
+population of prospective students that are unable to physically come to our
+campus and are thus unable to partake in the conventional tours.
 
 This is why we designed Virtour. Virtour is a public facing system for
 teleoperated building tours. Virtour builds on the existing Building-Wide
 Intelligence autonomous robot platform and is designed to keep the robots and
-any humans involved safe. Through the use of modern web and robot technologies
-it allows untrained public users to remotely control our robots in what we call
-a virtual tour. Our system is created to balance external control abilities
-while maintaining our rigorous standard of safety and security for the robots
-and people involved. As such it gives the user control of what the robot is
-doing, while at the same time using existing the autonomous navigation
-capabilities and obstacle avoidance to provide the user with shared autonomy.
+any humans involved safe.  It utilizes the lab's autonomous wheeled robots
+which can localize, navigate, and perform tasks without human intervention for
+long periods of time.
+
+Through the use of modern web and robot technologies it allows untrained public
+users to remotely control our robots in what we call a virtual tour. Our system
+is created to balance external control abilities while maintaining our rigorous
+standard of safety and security for the robots and people involved. As such it
+gives the user control of what the robot is doing, while simultaneously using
+existing the autonomous navigation capabilities and obstacle avoidance to
+provide the user with shared autonomy.
 
 \section{Related Work}
 
-The idea of using advanced robot platform to service web-based tours is not
-entirely new and has been explored in the past. The earliest virtual tour
-system was built to serve as a museum tour guide in 1998 by \cite{burgard1998}.
-Their robot, Rhino, mainly operated as a physically interactive tour guide that
-museum visitors could approach and request tours from, but also supported
-ocasionaly web-based tours where online visitors could vote on certain tours to
-use. Their web-based interface provided images from the on-board camera as well
-as static cameras, and allowed the user to download a Java applet to see
-real-time information. Web control was limited to voting on a desired tour
-(from a pre-programmed list) and viewing the robot's image stream.
+Web-based tours have been an active area of research in the past. The earliest
+virtual tour system was built to serve as a museum tour guide in 1998 by
+\cite{burgard1998}. Their robot, Rhino, operated mainly as a physically
+interactive tour guide that museum visitors could approach and request tours
+from, but also supported ocasionaly web-based tours where online visitors could
+vote on certain tours to use. Their web-based interface provided images from
+the on-board camera as well as static cameras placed throughout the museum, and
+allowed the user to download a Java applet to see real-time information. Web
+control was limited to voting on a desired tour (from a pre-programmed list)
+and viewing the robot's image stream.
 
-Thrun, et al developed a second-generation museum tour-guide robot
-\cite{thrun1999} Minerva, which improved on the work done by Burgard. Most of
-their improvements were around localization, mapping, SLAM, and HRI. They
-improved the virtual tour interface by allowing arbitrary selection of
-navigation goals, rather than a pre-selected list. However, their real-time
-information required the download of a Java web-applet to simulate the robot.
+Later work introduced a second-generation museum tour-guide robot by
+\cite{thrun1999} named Minerva, which improved on the work done by Burgard.
+Most of their improvements were around localization, mapping, SLAM, and HRI.
+They improved the virtual tour interface by allowing arbitrary selection of
+navigation goals, rather than a pre-selected list. However, web control was
+still limited and their real-time information display required the download of
+a Java web-applet.
 
-Kim, et al developed Jinny in 2004, which was yet another autonomous tour-guide
-robot \cite{kim2004}.  Of special interest to us, was their upgraded web-based
+\cite{km2004} al developed Jinny in 2004, which was yet another autonomous
+tour-guide robot. Their relevant contribution was the upgraded web-based
 interface which allowed the user to interact with the natural language parsing
 system and ask questions, as well as request actions. Their system was built
 using Java, ActiveX, and Javascript, all of which require special installation
 on part of the end user to use.
 
 More recent work virtual tour and telepresence systems were built in 2007
-\cite{michaud2007} and in 2013 \cite{kusu2013}. Kusu, et al's system is of special interest
-because it was built to provide campus tours.
+\cite{michaud2007} and in 2013 \cite{kusu2013}. Kusu, et al's system is relevant
+because it was designed to provide campus tours.
 
 Virtour differs from these related works in various ways. The first is that
 virtour's main purpose is to be a telepresence tour system, and thus gives web
-visitors priority in controlling the robot (unline Rhino or Minerva which only
-ocasionally allow web control). Furthermore, virtour is unique in that it uses
+visitors priority in controlling the robot (unlike Rhino or Minerva which only
+ocasionally allow web control). Our system is unique in that it uses
 only modern web standards and does not require the end-user to download any
 extra software (eg: Java, ActiveX). Thus virtour can be truly portable and
-accessed from any computer, tablet, or mobile device. Finally, virtour is also
+accessed from any computer, tablet, or mobile device. Virtour is also
 unique in that it provides the end-user with real-time video feedback and
 information about the robot. For example, the robot's position will be updated
 on the website in real-time without requiring any additional simulation
@@ -107,17 +105,18 @@ messages and perform tasks.
 
 \section{Building Wide Intelligence}
 
-Virtour is a part of the Building Wide Intelligence (BWI) project,
-which aims to develop fully autonomous mobile robots. The goal is to have these
-robots be permanent inhabitants of UT's Computer Science departmental
-building. BWI focuses on the intersection of Artificial Intelligence and
-Robotics, and aims to create robots that are useful as research platforms, as
-well service robots to help the humans in the building.
+Virtour is a part of the Building Wide Intelligence (BWI) project, which aims
+to develop fully autonomous mobile robots. The goal is to have these robots be
+permanent inhabitants of UT's Computer Science departmental building. BWI
+focuses on the intersection of Artificial Intelligence and Robotics, and works
+on creating robots that are useful as research platforms, as well service
+robots to help the humans in the building.
 
-Virtour runs on the BWI segbot robot platform. The segbot robot platform
-has three currently operating versions. Our last generation version 2 robots, a
-version 2 with an additional Kinova arm, and our latest generation version 3
-robots. Although virtour supports all three versions, it is mostly run on the
+Virtour runs on the BWI segbot robot platform. Our lab has four currently
+active robots. Three of which are based on the older generation hardware and
+software. We have one version 3 robot which has been our pilot as we transition
+all our robots to new hardware and software. Although virtour supports both
+versions, and will adapt its features accordingly, it is mostly used on the
 latest generation so that is what is described.
 
 \begin{figure}
@@ -128,17 +127,17 @@ latest generation so that is what is described.
 
 \subsection{Hardware Platform}
 
-The robot's base is a Segway Robotics Mobility Platform (RMP), which is powered
-by a built-in lithium-ion battery pack. The frame was designed in-house and
-supports a wide array of sensors. For navigation, localization, and obstacle
-avoidance, we use a Velodyne Puck lidar. Point clouds and RGB data are provided
-by a Microsoft Kinect. Our latest generation robots also have an additional
-laser range finder to compensate for the lidar's blind spots. The robot is
-equipped with a custom-built computer which runs Ubuntu 14.04. The computer is
-powered by the RMPs battery, thus removing the need for an external car battery
-(which was present in our version 2 robots).  The battery life on a running
-robot is approximately 6 hours when actively using the base, and 10 when
-stationary.
+Our version 3 segbot navigates using a Segway Robotics Mobility Platform (RMP)
+which is powered by a built-in lithium-ion battery pack. The frame was designed
+in-house and supports a wide array of sensors. For navigation, localization,
+and obstacle avoidance, we use a Velodyne Puck lidar. Point clouds and RGB data
+are provided by a Microsoft Kinect. Our latest generation robots also have an
+additional laser range finder to compensate for the lidar's blind spots. The
+robot is equipped with a custom-built computer which runs Ubuntu 14.04. The
+computer is powered by the RMPs battery, thus removing the need for an external
+car battery (which was present in our version 2 robots).  The battery life on a
+running robot is approximately 6 hours when actively using the base, and 10
+when stationary.
 
 \subsection{Software Stack}
 
