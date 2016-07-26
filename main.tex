@@ -87,8 +87,8 @@ because it was built to provide campus tours.
 
 Virtour differs from these related works in various ways. The first is that
 virtour's main purpose is to be a telepresence tour system, and thus gives web
-visitors priority in controlling the robot (unline Rhino or Minerva which only
-ocasionally allow web control). Furthermore, virtour is unique in that it uses
+visitors priority in controlling the robot (unlike Rhino or Minerva which only
+occasionally allow web control). Furthermore, virtour is unique in that it uses
 only modern web standards and does not require the end-user to download any
 extra software (eg: Java, ActiveX). Thus virtour can be truly portable and
 accessed from any computer, tablet, or mobile device. Finally, virtour is also
@@ -96,13 +96,13 @@ unique in that it provides the end-user with real-time video feedback and
 information about the robot. For example, the robot's position will be updated
 on the website in real-time without requiring any additional simulation
 software. Furthermore, the user's actions are performed in real-time and the
-results are shown almost immediately. So if a user requets the robot to rotate,
+results are shown almost immediately. So if a user request the robot to rotate,
 he or she will be able to see the robot's camera feed update instantly.  As
 part of virtour's goal of ease of use, it uses bandwidth scaling of video
 streaming to reduce the quality of the video according to the end-user's
 internet connection. Finally, virtour is novel because it provides the end-user
 with a wide variety of ways of interacting with the robot. Rather than just
-providing navgitation and video streaming, it allows the user to deliver spoken
+providing navigation and video streaming, it allows the user to deliver spoken
 messages and perform tasks.
 
 \section{Building Wide Intelligence}
@@ -192,7 +192,7 @@ Each robot is represented by a name and associated picture \footnote{All of our
 robots are named after Futurama characters}. From here our user can select a
 robot to connect to (by clicking on the robot's name or image) to initiate a
 virtual tour session. When the user clicks on the robot, the web client will
-initate a request to the specified robot requesting a tour session.
+initiate a request to the specified robot requesting a tour session.
 
 Tour sessions can be either led or spectated. When spectating the user has no
 control over the robot but can see the video stream, robot status, and track
@@ -314,7 +314,7 @@ that only an authorized user can control the robot.
 The server consists of a number of components which run on the physical robot
 to enable the web client to perform the required operations. All communications
 from the web client go through the \verb|ros_bridge| node, which is responsible
-for translatating the serialized socket commands to normal ROS commands. From
+for translating the serialized socket commands to normal ROS commands. From
 there, all requests are sent to the tour manager, which will authenticate the
 requests (to ensure they are validly formed and come from an accepted source)
 and then triage them to their respective service providers.
@@ -379,9 +379,9 @@ accessible from all our robots. The server was written on python and serves and
 handles requests over HTTP. It can handle update requests whenever a robot has
 a new IP address, as well as conventional GET requests to display the list of
 robots over text or JSON. It stores everything in-memory for performance
-reasons, but will write it to disk ocasionally to support recovery.
+reasons, but will write it to disk occasionally to support recovery.
 
-Each of the robots has a bash script which checks the robot's ip address against the
+Each of the robots has a bash script which checks the robot's IP address against the
 last update IP address to see if there is a change. If the IP has changed, the robot
 will perform an update request on the server to inform it of the new address. This
 script is configured using a cronjob which runs every three minutes.
@@ -409,7 +409,33 @@ operation, and resume the scavenger hunt later.
 
 \section{Conclusions and Future Work}
 
-Conclusions and future work.
+In this paper we introduced a novel telepresence system which gives users
+shared autonomy over the control of our robots. This system allows users to use
+their common internet-powered devices to access the virtour website. The
+virtour website allows users to securely join an existing tour as spectators,
+or, if available, to optionally lead a tour. This would give them the ability
+to make the robot navigate to desired locations and doors, as well as deliver
+messages, or perform scavenger hunt tasks. Users can experience the tour
+through the on-board camera which is streamed dynamically to the website as
+well as to track the robot's movement using the real-time map.
+
+However, there is still work left in building a more complete virtual tour
+system. Further work could extend the navigation system to allow the users
+point-and-click navigation to arbitrary points, while still maintaining shared
+autonomy. There is also work in adding more ways for remote users to interact
+with the robot's environment, such as using actuators or interacting via a
+mounted arm on the robot. There are multiple other ways of improving the client
+user interface such as adding the display of other information such as distance
+traveled or battery level information.
+
+Finally, although our focus has been on remotely operated building tours,
+virtour has laid the groundwork for a more complete telepresence robot system
+which could target other commercial uses such as hospitals (for family visits,
+or nurse checkups), as well other research-oriented projects such as HRI
+studies or robot monitoring systems. Most of our work is directly applicable
+and can be tailored to many different uses, since the communication,
+authentication, and interaction protocols that virtour uses can be independently
+used.
 
 \section{Acknowledgments}
 
