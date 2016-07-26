@@ -438,16 +438,28 @@ script is configured using a cronjob which runs every three minutes.
 \caption{Screenshot of scavenger hunt task status and certificate display}
 \end{figure}
 
-Intro about scavenger hunt.
+In addition to the remote control capabilities available through our website,
+virtour was also fully integrated with the Robot Scavenger Hunt
+\cite{zhang2016}.  The Robot Scavenger Hunt is a framework of tasks that AI
+capable robots should be able to complete autonomously. These are used to
+evaluate and compare the performance of autonomous robots that reside in larger
+spaces and autonomously operate for long durations of times. We supported all
+four tasks in the task library which require the robot to find a human wearing
+a specific colored shirt, to follow a human for more than 10 meters, to deliver
+a given object, and to find a specific object. All four of these task
+variations require a certificate of work which are images of the task being
+accomplished (eg: a picture of a human wearing a blue shirt). Whenever we
+participate, each robot is assigned a random set of daily tasks that it must
+then work to finish.
 
-\cite{zhang2016}
-
-Whenever a user connects to a robot running the scavenger hunt, virtour will
-additionally allow the users to interact with the scavenger hunt. For example,
-the user can see the list of the currently running tasks by clicking on the
-scavenger hunt button. Furthermore, if a task is completed virtour will use its
-image web server to display the certificate on the website (appears as a
-thumbnail but is expanded whenever clicked on). Finally, if the user is the
+Whenever a user uses virtour to connect with a robot running the scavenger
+hunt, virtour will detect that is running and allow the users to interact with
+the scavenger hunt. For example, the user can see the list of the currently
+running tasks by clicking on the scavenger hunt button. The server-side portion
+of virtour comes integrated with an HTTP image web server which is used to
+provide the user interface with images of the complete tasks. So if a task is
+completed virtour will display the certificate on the website (appears as a
+thumbnail but is expanded whenever clicked on).  Finally, if the user is the
 leader, they can also control the operation of scavenger hunt by stopping and
 resuming the current task. This allows a user can stop the current scavenger
 hunt task, then navigate the robot elsewhere or perform any other supported
