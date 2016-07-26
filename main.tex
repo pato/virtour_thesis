@@ -127,17 +127,18 @@ latest generation so that is what is described.
 
 \subsection{Hardware Platform}
 
-Our version 3 segbot navigates using a Segway Robotics Mobility Platform (RMP)
-which is powered by a built-in lithium-ion battery pack. The frame was designed
-in-house and supports a wide array of sensors. For navigation, localization,
-and obstacle avoidance, we use a Velodyne Puck lidar. Point clouds and RGB data
-are provided by a Microsoft Kinect. Our latest generation robots also have an
-additional laser range finder to compensate for the lidar's blind spots. The
-robot is equipped with a custom-built computer which runs Ubuntu 14.04. The
-computer is powered by the RMPs battery, thus removing the need for an external
-car battery (which was present in our version 2 robots).  The battery life on a
-running robot is approximately 6 hours when actively using the base, and 10
-when stationary.
+All of our robots are powered by the Segway Robotics Mobility Platform (RMP).
+Our latest generation robot uses a more advanced RMP version which comes with
+two integrated lithium-ion batteries. The frame was designed in-house and
+supports a wide array of sensors. For navigation, localization, and obstacle
+avoidance, we use a Velodyne Puck lidar. Point clouds (3D voxel map) and RGB
+data are provided by a Microsoft Kinect sensor. Our latest generation robots
+also have an additional laser range finder to compensate for the lidar's blind
+spots. The robot is equipped with a custom-built computer which runs Ubuntu
+14.04. The computer is powered by the RMPs battery, thus removing the need for
+an external car battery (which was present in our version 2 robots).  The
+battery life on a running robot is approximately 6 hours when actively using
+the base, and 10 when stationary.
 
 \subsection{Software Stack}
 
@@ -147,11 +148,11 @@ messaging framework to connect all the different components. ROS also provides
 us with access to many community packages such as device drivers, navigation
 implementations, and planning systems.
 
-Our navigation stack starts out with the logical planner, which uses ASP to
-plan and describe the environment (eg: which corridors connect with which
-hallways, and which doors are open). It then moves to the logical navigator
-which uses the global costmap (generated from previous laser readings, and is
-an adjacency grid of obstacles) to create the navigation plan.  Finally, the
+Our navigation stack starts out with the logical planner, which uses Answer Set
+Programming (ASP) (TODO: cite ASP paper) to plan and describe the environment
+(eg: which corridors connect with which hallways, and which doors are open). It
+then moves to the logical navigator which uses the previous laser readings and
+what it knows about the environment to create the navigation plan. Finally, the
 local planner uses the immediate sensor readings to send commands to the segway
 base and avoid any obstacles.
 
@@ -178,11 +179,11 @@ the robots, thus reducing the friction for trying our service.
 \subsection{Modern Approach}
 
 The web client is designed to be simple and functional while still being
-aesthetically pleasing to end users. It uses a grid system, powered by
-Bootstrap 2.0, to create a fully responsive web layout. This allows us to
-support any web-powered platform (eg: mobile devices, tablets, and computers)
-by making the website scale and re-organize based on the specifications of the
-device.
+aesthetically pleasing to end users. It uses a grid system powered by the
+popular front-end library, Bootstrap 2.0 (TODO: cite), to create a fully
+responsive web layout. This allows us to support any web-powered platform (eg:
+mobile devices, tablets, and computers) by making the website scale and
+re-organize based on the specifications of the device.
 
 When a user first visits our website, he or she is greeted by a list of our
 currently active and available robots (more on server implementation later).
@@ -191,17 +192,18 @@ robots are named after Futurama characters}. From here our user can select a
 robot to connect to (by clicking on the robot's name or image) to initiate a
 virtual tour session. When the user clicks on the robot, the web client will
 initate a request to the specified robot requesting a tour session.
-Tour sessions can be either led or spectated. The difference is that when
-spectating the user has no control over the robot but can see the video stream,
-robot status, and track the location of the robot along the map. A led tour is
-one one in which the user can actively instruct the robot to perform
-operations. Each tour can have at most one leader, but no limit on the number
-of spectators. We built virtour this way to ensure there is a consistent leader
-experience (so no two people fight for control of the robot), and for security
-reasons, since we can control whether a leader is allowed or not. If the tour
-has no existing leader and tours are allowed then a visiting user can elect to
-become tour leader by pressing the ``Become Leader'' button. Upon success, it
-will present the user with the leader UI.
+
+Tour sessions can be either led or spectated. When spectating the user has no
+control over the robot but can see the video stream, robot status, and track
+the location of the robot along the map in real time. A led tour is one one in
+which the user can actively instruct the robot to perform operations. Each tour
+can have at most one leader, but no limit on the number of spectators. We built
+virtour this way to ensure there is a consistent leader experience (to avoid tour
+contention by multiple users), and for security reasons, since we can control
+whether a leader is allowed or not. If the tour has no existing leader and
+tours are allowed then a visiting user can elect to become tour leader by
+pressing the ``Become Leader'' button. Upon success, it will present the user
+with the leader UI.
 
 \begin{figure}
 \centering
@@ -217,8 +219,6 @@ will present the user with the leader UI.
 \caption{The controls available to the leader}
 \end{figure}
 
-
-
 The leader UI adds a number of components to that allow the user to
 control the operations of the robot. The current list of available capabilities
 is as follows
@@ -229,7 +229,7 @@ is as follows
   \item Navigate to a door on the same floor
   \item Speak a message (using text-to-speech)
   \item Deliver a spoken message (using text-to-speech) to a location
-  \item Pause and resume a robot task
+  \item Pause and resume a scavenger hunt task
   \item Move the robot's camera (on supported robots)
 \end{itemize}
 
@@ -249,27 +249,18 @@ for the capabilities that it has (eg: which generation robot, which cameras it
 has access to, if the camera has servos, etc...) and then adapt the user
 interface accordingly to support whichever robot the user is connected to.
 
-The leader UI was developed using javascript and uses sockets to
-communicate with the robot. The javascript client can interact with ROS via the
+The leader UI was developed using JavaScript and uses sockets to
+communicate with the robot. The JavaScript client can interact with ROS via the
 socket to make service calls, subscribe and publish to topics, as well as make
 actionlib requests. Regardless of the type of the request, it is serialized and
-transferred over the socket to be interpreted by the server (described in a
-later section).
+transferred over the socket to be interpreted by the server.
 
 In order to maintain leader consistency, the leader UI will ping the server at
-a known interval to ensure the leader is still connected. If the user closes
-the window or the ping fails, the leader will relinquish the leader status so
-other users can control robot.
+a known interval to ensure the leader is still connected. This allows the
+server to become ware of a dropped connection. So if the user closes the window
+or the ping fails, the leader will relinquish the leader status so other users
+can control robot.
 
-For security reasons, we only allow outside parties to become leaders (and thus
-have control of the robot's operations) if we explicitly enable virtual tours
-on the robot. Furthermore, all leader operations that affect the robot (eg:
-rotating, or navigating) require user authentication, to prevent unauthorized
-sources to take control of our robots. On the client side, this means that each
-user is assigned a unique identifier (valid only for the current session).
-Whenever a user requests leadership, they request it for their unique
-identifier. All subsequent requests are made using this identifier to ensure
-that only an authorized user can control the robot.
 
 \subsection{Guest UI}
 
@@ -298,6 +289,19 @@ All our robots support the guest UI during all times we are running them, so
 that users can remotely connect to the robots and experience what they are
 doing.
 
+\section{Security}
+
+For security reasons, we only allow outside parties to become leaders (and thus
+have control of the robot's operations) if we explicitly enable virtual tours
+on the robot. Whereas, the guest UI is enabled any time the robot is running.
+Furthermore, all leader operations that affect the robot (eg: rotating, or
+navigating) require user authentication, to prevent unauthorized
+sources to take control of our robots. On the client side, this means that each
+user is assigned a unique identifier (valid only for the current session).
+Whenever a user requests leadership, they request it for their unique
+identifier. All subsequent requests are made using this identifier to ensure
+that only an authorized user can control the robot.
+
 \section{The Server}
 
 \begin{figure}
@@ -308,11 +312,11 @@ doing.
 
 The server consists of a number of components which run on the physical robot
 to enable the web client to perform the required operations. All communications
-from the web client hit the \verb|ros_bridge| node, which then translates the
-commands to ROS commands. From there, all requests are sent to the tour
-manager, which will authenticate the requests (to ensure they are validly
-formed and come from an accepted source) and then triage them to their
-respective service providers.
+from the web client go through the \verb|ros_bridge| node, which is responsible
+for translatating the serialized socket commands to normal ROS commands. From
+there, all requests are sent to the tour manager, which will authenticate the
+requests (to ensure they are validly formed and come from an accepted source)
+and then triage them to their respective service providers.
 
 \subsection{Tour Manager}
 
@@ -369,12 +373,17 @@ visits the home page (figure 3), they will see the list of currently active
 robots and will be able to connect to each without having to know the IP
 address.
 
-SmallDNS consists of a simple DNS server running on our master server in the
-lab, and a cronjob that runs on each of the robots. That way if the robot
-detects that it has changed IP address, it will inform the server. As time
-passes, the server will try to ping all the active robots to ensure that they
-are still alive. SmallDNS serves the state of its IP database in json
-format, which is what virtuour ultimately uses.
+SmallDNS consists of a simple DNS server running on our master server, which is
+accessible from all our robots. The server was written on python and serves and
+handles requests over HTTP. It can handle update requests whenever a robot has
+a new IP address, as well as conventional GET requests to display the list of
+robots over text or JSON. It stores everything in-memory for performance
+reasons, but will write it to disk ocasionally to support recovery.
+
+Each of the robots has a bash script which checks the robot's ip address against the
+last update IP address to see if there is a change. If the IP has changed, the robot
+will perform an update request on the server to inform it of the new address. This
+script is configured using a cronjob which runs every three minutes.
 
 \section{Scavenger Hunt Integration}
 
@@ -389,13 +398,13 @@ Intro about scavenger hunt.
 Whenever a user connects to a robot running the scavenger hunt, virtour will
 additionally allow the users to interact with the scavenger hunt. For example,
 the user can see the list of the currently running tasks by clicking on the
-scavenger hunt button. Furthermore, if a task is completed virtour will use
-its image web server to display the certificate on the website (appears as a
+scavenger hunt button. Furthermore, if a task is completed virtour will use its
+image web server to display the certificate on the website (appears as a
 thumbnail but is expanded whenever clicked on). Finally, if the user is the
 leader, they can also control the operation of scavenger hunt by stopping and
-resuming the current task. That way a user can stop the current scavenger hunt
-task, then navigate the robot elsewhere or perform any other operation, then
-resume the scavenger hunt later.
+resuming the current task. This allows a user can stop the current scavenger
+hunt task, then navigate the robot elsewhere or perform any other supported
+operation, and resume the scavenger hunt later.
 
 \section{Conclusions and Future Work}
 
@@ -404,10 +413,11 @@ Conclusions and future work.
 \section{Acknowledgments}
 
 Virtour couldn't have been completed with the help and support of my original
-research educator Matteo Leonetti, my current research educator Jivko Sinapov.
-Thank you to Peter Stone for providing direction and for all his support.
-Thanks to Shiqi Zang for helping and me with the scavenger hunt integration.
-Finally, thank you to Walter Sagehorn for helping develop smallDNS and to
+research educator Matteo Leonetti, and my current research educator Jivko
+Sinapov. Thank you to Peter Stone for providing direction and for all his
+support. Thanks to Shiqi Zang for helping and me with the scavenger hunt
+integration. Finally, thank you to Maxwell Svetlik for insightful comments and
+help through the project, Walter Sagehorn for helping develop smallDNS and to
 Benjamin Singer for developing the message delivery tasks.
 
 \nocite{*}
