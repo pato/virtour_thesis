@@ -295,18 +295,56 @@ All our robots support the guest UI during all times we are running them, so
 that users can remotely connect to the robots and experience what they are
 doing.
 
-\section{Security}
+\section{Security and Safety}
+
+Security was a top concern since virtour allows external parties to remotely
+operate our robots. Our two main security concerns were to prevent unapproved
+interactions with the robots and to prevent unauthorized access to virtour.
+Furthermore, since the robots are physically navigating potentially crowded
+spaces, we wanted to make sure that safety was our number one guarantee.
+
+\subsection{Client Side}
+
+The client works to prevent unapproved interactions by only presenting the user
+with ability to interact with the robot in the approved manners. On the
+JavaScript client-side, we also only create service and action clients (the
+communication methods that are used to request actions on the robot) that
+perform specific tasks, rather than general-purpose clients. Each client is
+assigned a universally unique identifier (UUID) which is used to authenticate
+all communication with the robot.
+
+To ensure the safety of users, the client only provides the user with the
+ability to perform two potentially hazardous operations: rotate and navigate.
+Both of these operations are moderated server side to ensure that safety is
+always maintained.
+
+\subsection{Server Side}
 
 For security reasons, we only allow outside parties to become leaders (and thus
 have control of the robot's operations) if we explicitly enable virtual tours
-on the robot. Whereas, the guest UI is enabled any time the robot is running.
-Furthermore, all leader operations that affect the robot (eg: rotating, or
-navigating) require user authentication, to prevent unauthorized
-sources to take control of our robots. On the client side, this means that each
-user is assigned a unique identifier (valid only for the current session).
-Whenever a user requests leadership, they request it for their unique
-identifier. All subsequent requests are made using this identifier to ensure
-that only an authorized user can control the robot.
+on the robot. Unlike the guest UI which is enabled any time the robot running,
+the server implementation of leader control is enabled by default to prevent
+unexpected access. Furthermore, all operations which affect the state of the
+robot (ie: rotating and navigating) require proper authentication. The server
+keeps track of the UUID of the currently active leader, and will only grant
+that specific client the ability to control the robot. This prevents
+unauthorized users from executing arbitrary actions on the robot. To prevent
+denial of service by any one leader (by not relinquishing their leadership or
+dropping the connection), the server uses the ping system to ensure that the
+leader is alive and connected, as well as an established timeout to prevent any
+one valid leader from preventing others from becoming leader.
+
+Safety for users and the robot is provided through the use of shared autonomy.
+Whenever users request navigation to locations via the client UI, the robot
+will perform the navigation using the full navigation stack which includes the
+global obstacle planning and local obstacle avoidance. Furthermore, the server
+has a whitelist (which is equal to the list of locations the users can request
+on the client) which it uses to verify all navigation requests, to prevent
+navigation to unauthorized locations. Finally, because of the way rotation is
+implemented, the robot stays entirely within its footprint when it rotates.
+When combined with the safety of our navigation stack, this means that in-place
+rotation is always safe.
+
 
 \section{The Server}
 
