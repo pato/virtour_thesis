@@ -1,5 +1,4 @@
 all:
-	pdflatex virtour.tex
 	pdflatex main.tex
 bibtex:
 	pdflatex main.tex
