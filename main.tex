@@ -148,14 +148,14 @@ the base, and 10 when stationary.
 
 \subsection{Software Stack}
 
-Our robots are powered by the Robot Operating System (ROS), which provides us
-with the infrastructure to run as a distributed node system. It provides the
-messaging framework to connect all the different components. ROS also provides
-us with access to many community packages such as device drivers, navigation
-implementations, and planning systems.
+Our robots are powered by the Robot Operating System (ROS) \cite{quigley2009},
+which provides us with the infrastructure to run as a distributed node system.
+It provides the messaging framework to connect all the different components.
+ROS also provides us with access to many community packages such as device
+drivers, navigation implementations, and planning systems.
 
 Our navigation stack starts out with the logical planner, which uses Answer Set
-Programming (ASP) (TODO: cite ASP paper) to plan and describe the environment
+Programming (ASP) \cite{lifschitz2008} to plan and describe the environment
 (eg: which corridors connect with which hallways, and which doors are open). It
 then moves to the logical navigator which uses the previous laser readings and
 what it knows about the environment to create the navigation plan. Finally, the
@@ -186,7 +186,8 @@ the robots, thus reducing the friction for trying our service.
 
 The web client is designed to be simple and functional while still being
 aesthetically pleasing to end users. It uses a grid system powered by the
-popular front-end library, Bootstrap 2.0 (TODO: cite), to create a fully
+popular front-end library, Bootstrap 2.0
+\footnote{\url{http://getbootstrap.com/}}, to create a fully
 responsive web layout. This allows us to support any web-powered platform (eg:
 mobile devices, tablets, and computers) by making the website scale and
 re-organize based on the specifications of the device.
@@ -484,9 +485,9 @@ used.
 
 \section{Acknowledgments}
 
-Virtour couldn't have been completed with the help and support of my original
-research educator Matteo Leonetti, and my current research educator Jivko
-Sinapov. Thank you to Peter Stone for providing direction and for all his
+Virtour couldn't have been accomplished withiout the help and support of my
+original research educator Matteo Leonetti, and my current research educator
+Jivko Sinapov. Thank you to Peter Stone for providing direction and for all his
 support. Thanks to Shiqi Zang for helping and me with the scavenger hunt
 integration. Finally, thank you to Maxwell Svetlik for insightful comments and
 help through the project, Walter Sagehorn for helping develop smallDNS and to
