@@ -331,7 +331,11 @@ unauthorized users from executing arbitrary actions on the robot. To prevent
 denial of service by any one leader (by not relinquishing their leadership or
 dropping the connection), the server uses the ping system to ensure that the
 leader is alive and connected, as well as an established timeout to prevent any
-one valid leader from preventing others from becoming leader.
+one valid leader from preventing others from becoming leader. Furthermore,
+there is a 15 minute time limit per leader, to avoid a single leader taking
+control of the system. Finally, we always have the option to disable tours (via
+the tour manager) which will immediately evict any active leaders and restore
+control of the robot.
 
 Safety for users and the robot is ensured through the use of shared autonomy.
 Whenever users request navigation to locations via the client UI, the robot
@@ -372,20 +376,6 @@ leader disconnects (by closing the page) or is disconnected (missing a ping),
 the tour manager will demote them and make tour leadership available again. The
 tour manager will also grant tour leader status to clients that properly
 request it whenever tours are enabled.
-
-\subsubsection{Authentication} % TODO move to security
-
-Due to the open nature of virtour (anyone can access/control our robots),
-security became an important factor. User authentication is done by generating a
-unique identifier to each client connected (generation is done client-side).
-This identifier is used to keep track of all the clients and the leader. All
-requests which control robot (ie: navigating, rotating, delivering messages) go
-through the authentication server. This verifies that the request is properly
-created, is coming from a valid leader, and is being executed at a time when
-tours are enabled. There is a 15 minute limit per leader, to avoid
-a single leader taking control of the system. Finally, we always have the
-option to disable tours (via the tour manager) which will immediately evict any
-active leaders and restore control of the robot.
 
 \subsubsection{Robot Control}
 
