@@ -81,7 +81,7 @@ system and ask questions, as well as request actions. Their system was built
 using Java, ActiveX, and Javascript, all of which require special installation
 on part of the end user to use.
 
-More recent work virtual tour and telepresence systems were built in 2007
+More recent work on virtual tour and telepresence systems were built in 2007
 \cite{michaud2007} and in 2013 \cite{kusu2013}. Kusu, et al's system is relevant
 because it was designed to provide campus tours.
 
@@ -90,7 +90,7 @@ virtour's main purpose is to be a telepresence tour system, and thus gives web
 visitors priority in controlling the robot (unlike Rhino or Minerva which only
 occasionally allow web control). The web system is unique in that it uses only
 modern web standards and does not require the end-user to download any extra
-software (eg: Java, ActiveX). Thus virtour can be truly portable and accessed
+software (e.g., Java, ActiveX). Thus virtour can be truly portable and accessed
 from any computer, tablet, or mobile device. Virtour is also unique in that it
 provides the end-user with real-time video feedback and information about the
 robot. For example, the robot's position will be updated on the website in
@@ -109,16 +109,15 @@ streaming, it allows the user to deliver spoken messages and perform tasks.
 Virtour is a part of the Building Wide Intelligence (BWI) project, which aims
 to develop fully autonomous mobile robots that exists as permanent inhabitants
 of UT's Computer Science departmental building. BWI focuses on the intersection
-of Artificial Intelligence and Robotics, and works on creating robots that are
-useful as research platforms, as well service robots to help the humans in the
-building.
+of Artificial Intelligence and Robotics, and works to create robots that are
+useful as research platforms, as well as helpful to the humans in the building.
 
 Virtour runs on the BWI segbot robot platform. Our lab has four currently
 active robots. Three of which are based on the older generation hardware and
-software. We have one version 3 robot which has been our pilot as we transition
-all our robots to new hardware and software. Although virtour supports both
-versions, and will adapt its features accordingly, it is mostly used on the
-latest generation so that is what is described.
+software (version 2). We have one version 3 robot which has been our pilot as
+we transition all our robots to new hardware and software. Although virtour
+supports both versions, and will adapt its features accordingly, it is mostly
+used on the latest generation so that is what is described.
 
 \begin{figure}
 \centering
@@ -168,9 +167,9 @@ online\footnote{\url{http://github.com/utexas-bwi}}.
 \caption{Overview of the virtour client structure and hierarchy}
 \end{figure}
 
-Virtour consists of two platforms, the user facing client, and the server and
-associated software that runs on the robots. The user client is accessible from
-a web browser and is built using web 2.0 technologies to adhere to modern web
+Virtour consists of two platforms, the user facing client, and associated
+software that runs on the robots. The user client is accessible from a web
+browser and is built using web 2.0 technologies to adhere to modern web
 development trends and simultaneously support as many platforms as possible. We
 decided to use a web-based client because of the increasing prominence of web
 browsers in people's lives. Furthermore, a web based approach means that our
@@ -244,7 +243,7 @@ is as follows
 The user can interact with the interface to request any of the previously
 mentioned tasks. For example, whenever the user is the leader a pair of
 directional arrow buttons is shown which will immediately rotate the robot when
-pressed. Navigation commands are access within the navigation pane
+pressed. Navigation commands are access within the navigation pane.
 
 Whenever a user first connects to a robot, the web client will query the robot
 for the capabilities that it has (eg: which generation robot, which cameras it
@@ -395,16 +394,16 @@ required to accomplish the goal.
 
 \subsection{IP management}
 
-In order to manage the IP addresses of all the robots, we created smallDNS
-\footnote{Source code is available at \url{https://github.com/pato/smallDNS}}
-(small multi-agent locally listable DNS). SmallDNS keeps track of the IP
-addresses of each of the robots (which are assigned via DHCP and are thus
-variable). Furthermore, it also keeps track of which robots are available and
-running via series of pings. This means that the end user does not need to
-worry about the IPs of the robots or which ones are alive. So when the user
-visits the home page (figure 3), they will see the list of currently active
-robots and will be able to connect to each without having to know the IP
-address.
+In order to manage the IP addresses of all the robots, we created
+smallDNS\footnote{Source code is available at
+\url{https://github.com/pato/smallDNS}} (small multi-agent locally listable
+DNS). SmallDNS keeps track of the IP addresses of each of the robots (which are
+assigned via DHCP and are thus variable). Furthermore, it also keeps track of
+which robots are available and running via series of pings. This means that the
+end user does not need to worry about the IPs of the robots or which ones are
+alive. So when the user visits the home page (figure 3), they will see the list
+of currently active robots and will be able to connect to each without having
+to know the IP address.
 
 SmallDNS consists of a simple DNS server running on our master server, which is
 accessible from all our robots. The server was written in Python and serves and
@@ -443,18 +442,18 @@ participate, each robot is assigned a random set of daily tasks that it must
 then work to finish.
 
 Whenever a user uses virtour to connect with a robot running the scavenger
-hunt, virtour will detect that is running and allow the users to interact with
-the scavenger hunt. For example, the user can see the list of the currently
-running tasks by clicking on the scavenger hunt button. The server-side portion
-of virtour comes integrated with an HTTP image web server which is used to
-provide the user interface with images of the complete tasks. So if a task is
-completed virtour will display the certificate on the website as thumbnails on
-the list (illustrated in Figure \ref{scavfig}) but they can expanded to see the
-full-size image by clicking on them. Finally, if the user is the leader, they
-can also control the operation of the scavenger hunt by stopping and resuming
-the current task. This allows a user can stop the current scavenger hunt task,
-then navigate the robot elsewhere or perform any other supported operation, and
-resume the scavenger hunt later.
+hunt, virtour will detect the scavenger hunt and allow the users to interact
+with the scavenger hunt. For example, the user can see the list of the
+currently running tasks by clicking on the scavenger hunt button. The
+server-side portion of virtour comes integrated with an HTTP image web server
+which is used to provide the user interface with images of the complete tasks.
+So if a task is completed virtour will display the certificate on the website
+as thumbnails on the list (illustrated in Figure \ref{scavfig}) but they can
+expanded to see the full-size image by clicking on them. Finally, if the user
+is the leader, they can also control the operation of the scavenger hunt by
+stopping and resuming the current task. This allows a user can stop the current
+scavenger hunt task, then navigate the robot elsewhere or perform any other
+supported operation, and resume the scavenger hunt later.
 
 \section{Conclusions and Future Work}
 
@@ -491,7 +490,7 @@ used.
 Virtour couldn't have been accomplished without the help and support of my
 original research educator Matteo Leonetti, and my current research educator
 Jivko Sinapov. Thank you to Peter Stone for providing direction and for all his
-support. Thanks to Shiqi Zang for helping and me with the scavenger hunt
+support. Thanks to Shiqi Zhang for helping and me with the scavenger hunt
 integration. Finally, thank you to Maxwell Svetlik for insightful comments and
 help through the project, Walter Sagehorn for helping develop smallDNS and to
 Benjamin Singer for developing the message delivery tasks.
