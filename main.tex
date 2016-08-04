@@ -14,6 +14,8 @@
 \usepackage{graphicx}
 \usepackage{apacite}
 \usepackage{natbib}
+\usepackage{caption}
+\usepackage{subcaption}
 \usepackage[utf8]{inputenc}
 \graphicspath{{images/}}
 
@@ -209,10 +211,18 @@ tours are allowed then a visiting user can elect to become tour leader by
 pressing the ``Become Leader'' button. Upon success, it will present the user
 with the leader UI.
 
-\begin{figure}
-\centering
-\includegraphics[width=3in]{tour_homepage}
-\caption{Landing page whenever someone visits the home page}
+\begin{figure}[!tbp]
+  \begin{subfigure}[b]{0.63\textwidth}
+    \includegraphics[width=\textwidth]{tour_homepage}
+    \caption{Desktop view}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.25\textwidth}
+    \includegraphics[width=\textwidth]{mobile_homepage}
+    \caption{Mobile view}
+  \end{subfigure}
+  \caption{Landing page whenever someone visits the home page}
+  \label{fig:homepage}
 \end{figure}
 
 \subsection{Leader UI}
