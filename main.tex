@@ -13,6 +13,7 @@
 \usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage{apacite}
+\usepackage{natbib}
 \usepackage[utf8]{inputenc}
 \graphicspath{{images/}}
 
@@ -56,7 +57,7 @@ with shared autonomy.
 
 Web-based tours have been an active area of research in the past. The earliest
 virtual tour system was built to serve as a museum tour guide in 1998 by
-\cite{burgard1998}. Their robot, Rhino, operated mainly as a physically
+\citet{burgard1998}. Their robot, Rhino, operated mainly as a physically
 interactive tour guide that museum visitors could approach and request tours
 from, but also supported occasional web-based tours where online visitors could
 vote on certain tours to use. Their web-based interface provided images from
@@ -66,7 +67,7 @@ control was limited to voting on a desired tour (from a pre-programmed list)
 and viewing the robot's image stream.
 
 Later work introduced a second-generation museum tour-guide robot by
-\cite{thrun1999} named Minerva, which improved on the work done by Burgard.
+\citet{thrun1999} named Minerva, which improved on the work done by Burgard.
 Most of their improvements were in the areas of localization, mapping,
 simultaneous localization and mapping (SLAM), and human robot interaction
 (HRI). They improved the virtual tour interface by allowing arbitrary selection
@@ -74,16 +75,16 @@ of navigation goals, rather than a pre-selected list. However, web control was
 still limited and their real-time information display required the download of
 a Java web-applet.
 
-\cite{kim2004} developed Jinny in 2004, which was yet another autonomous
+\citet{kim2004} developed Jinny in 2004, which was yet another autonomous
 tour-guide robot. Their relevant contribution was the upgraded web-based
 interface which allowed the user to interact with the natural language parsing
 system and ask questions, as well as request actions. Their system was built
 using Java, ActiveX, and Javascript, all of which require special installation
 on part of the end user to use.
 
-More recent work on virtual tour and telepresence systems were built in 2007
-\cite{michaud2007} and in 2013 \cite{kusu2013}. Kusu, et al's system is relevant
-because it was designed to provide campus tours.
+More recent work on virtual tour and telepresence systems were built in 2007 by
+\citet{michaud2007} and in 2013 by \citet{kusu2013}. Kusu, et al's system is
+relevant because it was designed to provide campus tours.
 
 Virtour differs from these related works in a number of ways. The first is that
 Virtour's main purpose is to be a telepresence tour system, and thus gives web
@@ -108,11 +109,12 @@ streaming, it allows the user to deliver spoken messages and perform tasks.
 
 Virtour is a part of the Building Wide Intelligence (BWI) project, which aims
 to develop fully autonomous mobile robots that exists as permanent inhabitants
-of UT's Computer Science departmental building. BWI focuses on the intersection
-of Artificial Intelligence and Robotics, and works to create robots that are
-useful as research platforms, as well as helpful to the humans in the building.
+of UT's Computer Science departmental building. The BWI project focuses on the
+intersection of Artificial Intelligence and Robotics, and works to create
+robots that are useful as research platforms, as well as helpful to the humans
+in the building.
 
-Virtour runs on the BWI segbot robot platform. Our lab has four currently
+Virtour runs on the BWI segbot robot platform. Currently, our lab has four 
 active robots. Three of which are based on the older generation hardware and
 software (version 2). We have one version 3 robot which has been our pilot as
 we transition all our robots to new hardware and software. Although Virtour
@@ -122,7 +124,7 @@ used on the latest generation so that is what is described.
 \begin{figure}
 \centering
 \includegraphics[height=2in]{bwi}
-\caption{Two of our second generation BWI robots}
+\caption{Two of our first generation BWI robots}
 \end{figure}
 
 \subsection{Hardware Platform}
@@ -132,7 +134,7 @@ Our latest generation robot uses a more advanced RMP version which comes with
 two integrated lithium-ion batteries. The frame was designed in-house and
 supports a wide array of sensors. For navigation, localization, and obstacle
 avoidance, we use a Velodyne Puck lidar. Point clouds (3D voxel map) and RGB
-data are provided by a Microsoft Kinect sensor. Our latest generation robots
+data are provided by an Xtion Pro. Our latest generation robots
 also have an additional laser range finder to compensate for the lidar's blind
 spots. The robot is equipped with a custom-built computer which runs Ubuntu
 14.04. The computer is powered by the RMPs battery, thus removing the need for
@@ -142,15 +144,16 @@ the base, and 10 when stationary.
 
 \subsection{Software Stack}
 
-Our robots are powered by the Robot Operating System (ROS) \cite{quigley2009},
-which provides us with the infrastructure to run as a distributed node system,
-and provides the messaging framework to connect all the different components.
-ROS also provides us with access to many community packages such as device
-drivers, navigation implementations, and planning systems.
+Our robots's software architecture is based on the Robot Operating System (ROS)
+\citep{quigley2009}, which provides us with the infrastructure to run as a
+distributed node system, and provides the messaging framework to connect all
+the different components. ROS also provides us with access to many community
+packages such as device drivers, navigation implementations, and planning
+systems.
 
 Our navigation stack begins with the logical planner, which uses Answer Set
-Programming (ASP) \cite{lifschitz2008} to plan and describe the environment
-(eg: which corridors connect with which hallways, and which doors are open). It
+Programming (ASP) \citep{lifschitz2008} to plan and describe the environment
+(e.g., which corridors connect with which hallways, and which doors are open). It
 then moves to the logical navigator which uses the previous laser readings (in
 the form of adjacency maps) and what it knows about the environment to create
 the navigation plan. Finally, the local planner uses the immediate sensor
@@ -180,26 +183,26 @@ the robots, thus reducing the friction for trying our service.
 
 The web client is designed to be simple and functional while still being
 aesthetically pleasing to end users. It uses a grid system powered by the
-popular front-end library, Bootstrap 2.0
-\footnote{\url{http://getbootstrap.com/}}, to create a fully
-responsive web layout. This allows us to support any web-powered platform (eg:
-mobile devices, tablets, and computers) by making the website scale and
-re-organize based on the specifications of the device.
+popular front-end library Bootstrap
+2.0\footnote{\url{http://getbootstrap.com/}}, to create a fully responsive web
+layout. This allows us to support any web-powered platform (e.g., mobile
+devices, tablets, and computers) by making the website scale and re-organize
+based on the specifications of the device.
 
-When a user first visits our website, he or she is greeted by a list of our
-currently active and available robots (more on server implementation later).
-Each robot is represented by a name and associated picture\footnote{All of our
-robots are named after Futurama characters}. From here our user can select a
-robot to connect to (by clicking on the robot's name or image) to initiate a
-virtual tour session. When the user clicks on the robot, the web client will
-initiate a request to the specified robot requesting a tour session.
+When on the website, the user is greeted by a list of our currently active and
+available robots. Each robot is represented by a name and associated
+picture\footnote{All of our robots are named after Futurama characters}. From
+here our user can select a robot to connect t, by clicking on the robot's name
+or image, to initiate a virtual tour session. When the user clicks on the
+robot, the web client will initiate a request to the specified robot requesting
+a tour session.
 
-Tour sessions can be either led or spectated. When spectating the user has no
+Tour sessions can be either led or spectated. When spectating, the user has no
 control over the robot but can see the video stream, robot status, and track
-the location of the robot on the map in real time. A led tour is one in
-which the user can actively instruct the robot to perform operations. Each tour
-can have at most one leader, but no limit on the number of spectators. We built
-Virtour this way to ensure there is a consistent leader experience (to avoid tour
+the location of the robot on the map in real time. When leading a tour the user
+can actively instruct the robot to perform operations. Each tour can have at
+most one leader, but no limit to the number of spectators. We built Virtour
+this way to ensure there is a consistent leader experience (to avoid tour
 contention by multiple users), and for security reasons, since we can control
 whether a leader is allowed or not. If the tour has no existing leader and
 tours are allowed then a visiting user can elect to become tour leader by
@@ -225,13 +228,13 @@ control the operations of the robot. The current list of available capabilities
 is as follows
 
 \begin{itemize}
-  \item Rotate the robot's base
-  \item Navigate to a room on the same floor
-  \item Navigate to a door on the same floor
+  \item Rotate the robot
+  \item Navigate to a room 
+  \item Navigate to a door 
   \item Speak a message (using text-to-speech)
   \item Deliver a spoken message (using text-to-speech) to a location
   \item Pause and resume a scavenger hunt task
-  \item Move the robot's camera (on supported robots)
+  \item Move the robot's pan/tilt camera unit
 \end{itemize}
 
 \begin{figure}
@@ -240,23 +243,23 @@ is as follows
 \caption{Navigation interface for leaders}
 \end{figure}
 
-The user can interact with the interface to request any of the previously
-mentioned tasks. For example, whenever the user is the leader a pair of
-directional arrow buttons is shown which will immediately rotate the robot when
-pressed. Navigation commands are access within the navigation pane.
+The user can interact with the interface to request any of the tasks. For
+example, whenever the user is the leader, a pair of directional arrow buttons
+is shown which will immediately rotate the robot when pressed. Navigation
+commands are accessed within the navigation pane.
 
 Whenever a user first connects to a robot, the web client will query the robot
-for the capabilities that it has (eg: which generation robot, which cameras it
-has access to, if the camera has servos, etc...) and then adapt the user
+for the capabilities that it has (e.g., which generation robot, which cameras it
+has access to, if the camera has servos, etc) and then adapt the user
 interface accordingly to support whichever robot the user is connected to.
 
 The leader UI was developed using JavaScript and uses sockets to
 communicate with the robot. The JavaScript client can interact with ROS via the
 socket to make service calls, subscribe and publish to topics, as well as make
-actionlib requests. Regardless of the type of the request, it is serialized and
+actionlib requests. Regardless of the type of request, it is serialized and
 transferred over the socket to be interpreted by the server.
 
-In order to maintain leader consistency, the leader UI will ping the server at
+To maintain leader consistency, the leader UI will ping the server at
 a known interval to ensure the leader is still connected. This allows the
 server to become aware of a dropped connection. So if the user closes the window
 or the ping fails, the leader will relinquish the leader status so other users
@@ -272,25 +275,23 @@ can control robot.
 \end{figure}
 
 The guest UI is the default interface presented to the user whenever he or she
-connects to a robot. It dominated by the live stream from the robot's camera
-which is shown prominently in the center. The robot's camera is placed in a
-position on the robot that makes the user experience feel like a point of view
-camera. This makes the experience more immersive and the tour more engaging.
+connects to a robot. The predominant view is the live stream from the robot's
+camera which is shown in the center. The robot's camera is placed in a position
+on the robot that makes the user experience feel like a point of view camera.
+This makes the experience more immersive and the tour more engaging.
 
-Furthermore, the interface also displays a mini map of the floor the robot is
-on, with a position marker to indicate the robot's current position.  If the
+The interface also displays a mini map of the floor the robot is
+on, with a marker to indicate the robot's current position.  If the
 robot navigates to another floor (via the elevator), Virtour will recognize the
 floor change and show the most up-to-date map of the current floor.
 
 Finally, the guest UI has a status box which displays whether or not a tour is
 on-going, allowed, or disabled. From here the user can request to become tour
-leader (if available), or wait for a tour to be available.
-
-All our robots have the guest UI enabled at all times, so that users can
-remotely connect to the robots and experience what they are doing. For privacy
-reasons, the robot will have turn on indicator lights (mounted LED strips)
-whenever there is someone streaming video (at the moment only supported in our
-latest generation robot).
+leader (if available), or wait for a tour to be available. All our robots have
+the guest UI enabled at all times, so that users can remotely connect to the
+robots and experience what they are doing. For privacy reasons, the robot will
+have turn on indicator lights (mounted LED strips) whenever there is someone
+streaming video (at the moment only supported in our latest generation robot).
 
 \section{Security and Safety}
 
@@ -429,7 +430,7 @@ script is configured using a cronjob which runs every three minutes.
 
 In addition to the remote control capabilities available through our website,
 Virtour was also fully integrated with the Robot Scavenger Hunt
-\cite{zhang2016}.  The Robot Scavenger Hunt is a framework of tasks that AI
+by \citet{zhang2016}.  The Robot Scavenger Hunt is a framework of tasks that AI
 capable robots should be able to complete autonomously. These are used to
 evaluate and compare the performance of autonomous robots that reside in larger
 spaces and autonomously operate for long durations of times. We supported all
@@ -437,7 +438,7 @@ four tasks in the task library which require the robot to find a human wearing
 a specific colored shirt, to follow a human for more than 10 meters, to deliver
 a given object, and to find a specific object. All four of these task
 variations require a certificate of work which are images of the task being
-accomplished (eg: a picture of a human wearing a blue shirt). Whenever we
+accomplished (e.g., a picture of a human wearing a blue shirt). Whenever we
 participate, each robot is assigned a random set of daily tasks that it must
 then work to finish.
 
