@@ -82,7 +82,7 @@ tour-guide robot. Their relevant contribution was the upgraded web-based
 interface which allowed the user to interact with the natural language parsing
 system and ask questions, as well as request actions. Their system was built
 using Java, ActiveX, and Javascript, all of which require special installation
-on part of the end user to use.
+for the users.
 
 More recent work on virtual tour and telepresence systems were built in 2007 by
 \citet{michaud2007} and in 2013 by \citet{kusu2013}. Kusu, et al's system is
@@ -215,7 +215,7 @@ based on the specifications of the device.
 When on the website, the user is greeted by a list of our currently active and
 available robots. Each robot is represented by a name and associated
 picture\footnote{All of our robots are named after Futurama characters}. From
-here our user can select a robot to connect t, by clicking on the robot's name
+here our user can select a robot to connect, by clicking on the robot's name
 or image, to initiate a virtual tour session. When the user clicks on the
 robot, the web client will initiate a request to the specified robot requesting
 a tour session.
@@ -246,7 +246,7 @@ with the leader UI.
   \label{fig:homepage}
 \end{figure}
 
-\subsection{Leader UI}
+\subsection{Leader User Interface}
 
 \begin{figure}
 \centering
@@ -297,7 +297,7 @@ or the ping fails, the leader will relinquish the leader status so other users
 can control robot.
 
 
-\subsection{Guest UI}
+\subsection{Guest User Interface}
 
 \begin{figure}
 \centering
@@ -307,9 +307,9 @@ can control robot.
 
 The guest UI is the default interface presented to the user whenever he or she
 connects to a robot. The predominant view is the live stream from the robot's
-camera which is shown in the center. The robot's camera is placed in a position
-on the robot that makes the user experience feel like a point of view camera.
-This makes the experience more immersive and the tour more engaging.
+camera which is shown in the center. The robot's camera is placed strategically
+so as to provide the user with a point of view. This makes the user experience
+more realistic and makes the tour more engaging.
 
 The interface also displays a mini map of the floor the robot is
 on, with a marker to indicate the robot's current position.  If the
@@ -390,7 +390,7 @@ rotation is always safe.
 
 The server consists of a number of components which run on the physical robot
 to enable the web client to perform the required operations. All communications
-from the web client go through the \verb|ros_bridge| node, which is responsible
+from the web client go through the ROS bridge node, which is responsible
 for translating the serialized socket commands to normal ROS commands. From
 there, all requests are sent to the tour manager, which will authenticate the
 requests (to ensure they are validly formed and come from an accepted source)
@@ -430,18 +430,19 @@ In order to manage the IP addresses of all the robots, we created
 smallDNS\footnote{Source code is available at
 \url{https://github.com/pato/smallDNS}} (small multi-agent locally listable
 DNS). SmallDNS keeps track of the IP addresses of each of the robots (which are
-assigned via DHCP and are thus variable). Furthermore, it also keeps track of
-which robots are available and running via series of pings. This means that the
-end user does not need to worry about the IPs of the robots or which ones are
-alive. So when the user visits the home page (figure 3), they will see the list
-of currently active robots and will be able to connect to each without having
-to know the IP address.
+dynamically assigned and thus changed from time to time). Furthermore, it also
+keeps track of which robots are available and running via series of pings. This
+means that the end user does not need to worry about the IPs of the robots or
+which ones are alive. So when the user visits the home page (figure 3), they
+will see the list of currently active robots and will be able to connect to
+each without having to know the IP address.
 
 SmallDNS consists of a simple DNS server running on our master server, which is
-accessible from all our robots. The server was written in Python and serves and
-handles requests over HTTP. It can handle update requests whenever a robot has
+accessible from all our robots. The server was written in Python and can
+handle HTTP requests. It can respond to update requests whenever a robot has
 a new IP address, as well as conventional GET requests to display the list of
-robots over text or JSON. It stores everything in-memory for performance
+robots over text or JSON\footnote{JavaScript Object Notation - a human-readable
+data-interchange format}. It stores everything in-memory for performance
 reasons, but will write it to disk periodically so that we do not lose
 information in case the server is stopped.
 
