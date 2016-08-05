@@ -92,7 +92,7 @@ a Java web-applet.
 tour-guide robot. Their relevant contribution was the upgraded web-based
 interface which allowed the user to interact with the natural language parsing
 system and ask questions, as well as request actions. Their system was built
-using Java, ActiveX, and Javascript, all of which require special installation
+using Java, ActiveX, and JavaScript, all of which require special installation
 for the users.
 
 More recent work on virtual tour and telepresence systems were built in 2007 by
@@ -209,14 +209,14 @@ Almost all of the software that runs on our robots is open source. Furthermore,
 all of the code that we write is also open source and available in the public
 domain\footnote{\url{https://github.com/utexas-bwi}}. Our software is also
 released as ROS packages back to the community and is available to install as
-binaries\footnote{\url{https://wiki.ros.org/bwi} and
-\url{https://wiki.ros.org/segbot}}
+binaries\footnote{\url{http://wiki.ros.org/bwi} and
+\url{http://wiki.ros.org/segbot}}
 
 \section{The Web Client}\label{sec:client}
 
 \begin{figure}
   \centering
-  \includegraphics[width=3in]{virtour_client}
+  \includegraphics[width=3.5in]{virtour_client}
   \caption{Overview of the Virtour client structure and hierarchy}
   \label{fig:client}
 \end{figure}
@@ -229,6 +229,20 @@ decided to use a web-based client because of the increasing prominence of web
 browsers in people's lives. Furthermore, a web based approach means that our
 end-users do not have to install any additional software to connect with or use
 the robots, thus reducing the friction for trying our service.
+
+\subsection{Client Architecture}
+
+The web client was developed using HTML5 and CSS3 to create the visual
+interface and JavaScript to provide the functionality and connectivity. The
+web client consists of multiple handlers and ROS clients which are used to
+communicate with individual robot components such as the tour manager and
+navigation managers. All ROS requests are routed through
+roslibjs\footnote{\url{http://wiki.ros.org/roslibjs}} which serializes them and
+uses a SOCKET connection to send them to the robot. The image and video
+streaming are done without roslibjs for optimization reasons and as such as two
+separate connections to the robot. In total the web client communicates to the
+robot via three different ports. The hierarchy of components and connections
+can be seen in Figure \ref{fig:client}. 
 
 \subsection{Modern Approach}
 
@@ -243,7 +257,7 @@ based on the specifications of the device.
 When on the website, the user is greeted by a list of our currently active and
 available robots. Each robot is represented by a name and associated
 picture\footnote{All of our robots are named after Futurama characters}. From
-here our user can select a robot to connect to by clicking on the robot's name
+here a user can select a robot to connect to by clicking on the robot's name
 or image. When the user clicks on the robot, the web client will initiate a
 request to the specified robot requesting a tour. If the connection is
 successful the client will switch into a tour session.
@@ -283,9 +297,9 @@ with the leader UI.
   \label{fig:leader_controls}
 \end{figure}
 
-The leader UI adds a number of components to that allow the user to
-control the operations of the robot. The current list of available capabilities
-is as follows
+The leader UI adds a number of components to that allow the user to control the
+operations of the robot. The current list of available remote-control
+capabilities is as follows
 
 \begin{itemize}
   \item Rotate the robot
@@ -313,12 +327,6 @@ Whenever a user first connects to a robot, the web client will query the robot
 for the capabilities that it has (e.g., which generation robot, which cameras it
 has access to, if the camera has servos, etc) and then adapt the user
 interface accordingly to support whichever robot the user is connected to.
-
-The leader UI was developed using JavaScript and uses sockets to
-communicate with the robot. The JavaScript client can interact with ROS via the
-socket to make service calls, subscribe and publish to topics, as well as make
-actionlib requests. Regardless of the type of request, it is serialized and
-transferred over the socket to be interpreted by the server.
 
 To maintain leader consistency, the leader UI will ping the server at
 a known interval to ensure the leader is still connected. This allows the
@@ -415,18 +423,21 @@ rotation is always safe.
 
 \begin{figure}
   \centering
-  \includegraphics[width=3in]{virtour_server}
+  \includegraphics[width=3.5in]{virtour_server}
   \caption{Overview of the Virtour server structure and hierarchy}
   \label{fig:server}
 \end{figure}
 
 The server consists of a number of components which run on the physical robot
-to enable the web client to perform the required operations. All communications
+to enable the web client to perform the required operations. Most communications
 from the web client go through the ROS bridge node, which is responsible
-for translating the serialized socket commands to normal ROS commands. From
-there, all requests are sent to the tour manager, which will authenticate the
-requests (to ensure they are validly formed and come from an accepted source)
-and then delegate them to their respective service providers.
+for translating the serialized socket commands to normal ROS commands. This is
+the case for all action requests and commands. From there, requests are
+sent to the tour manager, which will authenticate the requests (to ensure they
+are validly formed and come from an accepted source) and then delegate them to
+their respective service providers. The robots also have two other open
+connections for streaming images and video to web clients. The hierarchy of
+communications can be seen in Figure \ref{fig:server}.
 
 \subsection{Tour Manager}
 
