@@ -147,14 +147,7 @@ intersection of Artificial Intelligence and Robotics, and works to create
 robots that are useful as research platforms, as well as helpful to the humans
 in the building.
 
-Virtour builds on existing work done on the BWI project. The BWI lab has done
-extensive work on planning and learning of action costs which enables the
-robots to efficiently and hierarchically plan high level tasks such as
-navigating to rooms \citep{yang2014, khandelwal2014}. Virtour extends on this
-and the work on navigation and localization to provide users with the ability
-to navigate and track the robots remotely.
-
-Furthermore, Virtour runs on the BWI segbot robot platform --- our in-house robot
+Virtour runs on the BWI segbot robot platform --- our in-house robot
 platform which has been in development for over 4 years. Currently, our lab has
 four active robots. Three of the robots are based on the older generation
 hardware and software (version 2 as depicted in figure \ref{fig:segbotv2}) one
@@ -217,13 +210,15 @@ the different components. ROS also provides us with access to many community
 packages such as device drivers, navigation implementations, and planning
 systems.
 
-Our navigation stack begins with the logical planner, which uses Answer Set
-Programming (ASP) to plan and describe the environment such as which corridors
-connect with which hallways, and which doors are open \citep{lifschitz2008}. It
-then moves to the logical navigator which uses current and previous laser readings (in
-the form of adjacency maps) and what it knows about the environment to create
-the navigation plan. Finally, the local planner uses the immediate sensor
-readings to send commands to the segway base and avoid any obstacles.
+Our robots use a hierarchical task-planning architecture for navigation
+planning \citep{zhang2014}. The navigation stack begins with the logical
+planner, which uses Answer Set Programming (ASP) to plan and describe the
+environment such as which corridors connect with which hallways, and which
+doors are open \citep{lifschitz2008}. It then moves to the logical navigator
+which uses current and previous laser readings (in the form of adjacency maps)
+and what it knows about the environment to create the navigation plan. Finally,
+the local planner uses the immediate sensor readings to send commands to the
+segway base and avoid any obstacles.
 
 Almost all of the software that runs on our robots is open source. Furthermore,
 all of the code that we write is also open source and available in the public
@@ -232,15 +227,23 @@ released as ROS packages back to the community and is available to install as
 binaries\footnote{\url{http://wiki.ros.org/bwi} and
 \url{http://wiki.ros.org/segbot}}
 
-\section{The Web Client}\label{sec:client}
+\subsection{Related Work}
 
-\begin{figure}
-  \centering
-  \includegraphics[width=0.95\textwidth]{virtour_client}
-  \caption{Overview of the Virtour client structure and hierarchy of
-  communication between the different components}
-  \label{fig:client}
-\end{figure}
+The BWI lab has done extensive work on the planning and learning of action
+cost. This enables them to plan high level tasks such as navigating to floors
+using hierarchical planning \citep{yang2014, khandelwal2014}. Using the robot's
+point-cloud sensors we also developed a system to perform activity recognition
+\citep{gori2015robot}. We have also developed systems for multi-robot guidance
+that enable our robots to guide humans to their desired locations
+\citep{khandelwal2015, khandelwal2014multi}. The segbot arm robot has also
+allowed us to develop systems for grounded language learning by playing a game
+of I, Spy \citep{thomason2016} as well through human-robot dialog
+\citep{thomason2015learning}. Similarly, we used the robot arm to perform
+object exploration and ordering using haptic exploratory behaviors
+\citep{sinapov2016}. In the area of activity recognition
+
+
+\section{The Web Client}\label{sec:client}
 
 Virtour consists of two platforms, the user facing client, and associated
 software that runs on the robots. The user client is accessible from a web
@@ -264,6 +267,15 @@ streaming are done without roslibjs for optimization reasons and as such as two
 separate connections to the robot. In total the web client communicates to the
 robot via three different ports. The hierarchy of components and connections
 can be seen in Figure \ref{fig:client}. 
+
+\begin{figure}[t!]
+  \centering
+  \includegraphics[width=0.95\textwidth]{virtour_client}
+  \caption{Overview of the Virtour client structure and hierarchy of
+  communication between the different components}
+  \label{fig:client}
+\end{figure}
+
 
 \subsection{Modern Approach}
 
