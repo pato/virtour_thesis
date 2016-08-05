@@ -32,12 +32,12 @@
 \tableofcontents
 \newpage
 
-\section{Introduction}
+\section{Introduction}\label{sec:intro}
 
 The University of Texas at Austin has a constant stream of visitors and tours
 of the campus. Of special interest to us are the large number of tours given at
 our computer science building. The tour guests range in ages and backgrounds,
-and tend to be prospective students to both undergraduate and gradate programs,
+and tend to be prospective students to both undergraduate and graduate programs,
 or visiting faculty. Unfortunately, there is a large population of prospective
 students that are unable to physically come to our campus and are thus unable
 to partake in the conventional tours.
@@ -55,7 +55,18 @@ control of what the robot is doing, while simultaneously using existing the
 autonomous navigation capabilities and obstacle avoidance to provide the user
 with shared autonomy.
 
-\section{Related Work}
+The two major contributions of this work are as follows. First, the general
+server and client framework for internet-based remote control operation of
+robots as described in Section \ref{sec:server}. This is a system that can be
+extended and used to expose arbitrary robot capabilities to the internet, and
+can be used for much more than just campus tours. Furthermore, this system was
+built with security in mind, as described in Section \ref{sec:security}, which
+makes it secure for public web deployment. Second, the novel approach to the
+user interface client which is designed to be accessible by all modern
+internet-capable devices and adheres to modern web 2.0 standards, as described
+in Section \ref{sec:client}.
+
+\section{Related Work}\label{sec:related}
 
 Web-based tours have been an active area of research in the past. The earliest
 virtual tour system was built to serve as a museum tour guide in 1998 by
@@ -99,15 +110,15 @@ provides the end-user with real-time video feedback and information about the
 robot. For example, the robot's position will be updated on the website in
 real-time without requiring any additional simulation software. Furthermore,
 the user's actions are performed in real-time and the results are shown almost
-immediately. So if a user request the robot to rotate, he or she will be able
-to see the robot's camera feed update instantly.  As part of Virtour's goal of
-ease of use, it uses bandwidth scaling of video streaming to reduce the quality
-of the video according to the end-user's internet connection. Finally, Virtour
-is novel because it provides the end-user with a wide variety of ways of
-interacting with the robot. Rather than just providing navigation and video
+immediately. So if a user request for the robot to rotate, he or she will be
+able to see the robot's camera feed update instantly. As part of Virtour's
+goal of ease of use, it uses bandwidth scaling of video streaming to reduce the
+quality of the video according to the end-user's internet connection. Finally,
+Virtour is novel because it provides the end-user with a wide variety of ways
+of interacting with the robot. Rather than just providing navigation and video
 streaming, it allows the user to deliver spoken messages and perform tasks.
 
-\section{Building Wide Intelligence}
+\section{Building Wide Intelligence}\label{sec:bwi}
 
 Virtour is a part of the Building Wide Intelligence (BWI) project, which aims
 to develop fully autonomous mobile robots that exists as permanent inhabitants
@@ -154,16 +165,16 @@ All of our robots are powered by the Segway Robotics Mobility Platform (RMP).
 Our latest generation robot uses the latest RMP version which comes with
 two integrated lithium-ion batteries. The frame was designed in-house and
 supports a wide array of sensors. For navigation, localization, and obstacle
-avoidance, we use a Velodyne Puck lidar. Point clouds (3D voxel map) and RGB
-data are provided by an Xtion Pro. Our latest generation robots
-also have an additional laser range finder to compensate for the lidar's blind
-spots. The robot is equipped with a custom-built computer\footnote{3.9Ghz i7
-processor, 16GB ddr3 RAM, Gigabyte GA-Q87TN motherboard, HDPLEX H1.S heatsink
-case, and a Acer FT200 monitor} which runs Ubuntu 14.04. The computer is
-powered by the RMPs battery, thus removing the need for an external car battery
-(which was present in our version 2 robots).  The battery life on a running
-robot is approximately 6 hours when actively using the base, and 10 when
-stationary.
+avoidance, we use a Velodyne Puck lidar. Point clouds (3D voxel map) and video
+data are provided by an Xtion Pro, a device very similar to the Microsoft
+Kinect. Our latest generation robots also have an additional laser range finder
+to compensate for the lidar's blind spots. The robot is equipped with a
+custom-built computer\footnote{3.9Ghz i7 processor, 16GB ddr3 RAM, Gigabyte
+GA-Q87TN motherboard, HDPLEX H1.S heatsink case, and a Acer FT200 monitor}
+which runs Ubuntu 14.04. The computer is powered by the RMPs battery, thus
+removing the need for an external car battery (which was present in our version
+2 robots).  The battery life on a running robot is approximately 6 hours when
+actively using the base, and 10 when stationary.
 
 \subsection{Software Stack}
 
@@ -185,7 +196,7 @@ readings to send commands to the segway base and avoid any obstacles.
 All of our software is open source and freely available
 online\footnote{\url{http://github.com/utexas-bwi}}.
 
-\section{The Web Client}
+\section{The Web Client}\label{sec:client}
 
 \begin{figure}
 \centering
@@ -215,10 +226,10 @@ based on the specifications of the device.
 When on the website, the user is greeted by a list of our currently active and
 available robots. Each robot is represented by a name and associated
 picture\footnote{All of our robots are named after Futurama characters}. From
-here our user can select a robot to connect, by clicking on the robot's name
-or image, to initiate a virtual tour session. When the user clicks on the
-robot, the web client will initiate a request to the specified robot requesting
-a tour session.
+here our user can select a robot to connect to by clicking on the robot's name
+or image. When the user clicks on the robot, the web client will initiate a
+request to the specified robot requesting a tour. If the connection is
+successful the client will switch into a tour session.
 
 Tour sessions can be either led or spectated. When spectating, the user has no
 control over the robot but can see the video stream, robot status, and track
@@ -324,7 +335,7 @@ robots and experience what they are doing. For privacy reasons, the robot will
 have turn on indicator lights (mounted LED strips) whenever there is someone
 streaming video (at the moment only supported in our latest generation robot).
 
-\section{Security and Safety}
+\section{Security and Safety}\label{sec:security}
 
 Security was a top concern in designing Virtour since the system allows
 external parties to remotely operate our robots. Our two main security
@@ -380,7 +391,7 @@ When combined with the safety of our navigation stack, this means that in-place
 rotation is always safe.
 
 
-\section{The Server}
+\section{The Server}\label{sec:server}
 
 \begin{figure}
 \centering
@@ -451,7 +462,7 @@ last update IP address to see if there is a change. If the IP has changed, the r
 will perform an update request on the server to inform it of the new address. This
 script is configured using a cronjob which runs every three minutes.
 
-\section{Scavenger Hunt Integration}
+\section{Scavenger Hunt Integration}\label{sec:scav}
 
 \begin{figure}
 \centering
@@ -484,11 +495,11 @@ So if a task is completed Virtour will display the certificate on the website
 as thumbnails on the list (illustrated in Figure \ref{scavfig}) but they can
 expanded to see the full-size image by clicking on them. Finally, if the user
 is the leader, they can also control the operation of the scavenger hunt by
-stopping and resuming the current task. This allows a user can stop the current
+stopping and resuming the current task. This allows a user to stop the current
 scavenger hunt task, then navigate the robot elsewhere or perform any other
 supported operation, and resume the scavenger hunt later.
 
-\section{Conclusions and Future Work}
+\section{Conclusions and Future Work}\label{sec:conclusion}
 
 In this paper, we introduced a novel telepresence system which gives users
 shared autonomy over the control of our robots. This system allows users to use
@@ -518,7 +529,7 @@ and can be tailored to many different uses, since the communication,
 authentication, and interaction protocols that Virtour uses can be independently
 used.
 
-\section{Acknowledgments}
+\section{Acknowledgments}\label{sec:acks}
 
 Virtour couldn't have been accomplished without the help and support of my
 original research educator Matteo Leonetti, and my current research educator
