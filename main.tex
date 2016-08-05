@@ -172,19 +172,20 @@ robot, we will describe only the latest hardware platform.
 \subsection{Hardware Platform}
 
 All of our robots are powered by the Segway Robotics Mobility Platform (RMP).
-Our latest generation robot uses the latest RMP version which comes with
-two integrated lithium-ion batteries. The frame was designed in-house and
-supports a wide array of sensors. For navigation, localization, and obstacle
-avoidance, we use a Velodyne Puck lidar. Point clouds (3D voxel map) and video
-data are provided by an Xtion Pro, a device very similar to the Microsoft
-Kinect. Our latest generation robots also have an additional laser range finder
-to compensate for the lidar's blind spots. The robot is equipped with a
-custom-built computer\footnote{3.9Ghz i7 processor, 16GB ddr3 RAM, Gigabyte
-GA-Q87TN motherboard, HDPLEX H1.S heatsink case, and a Acer FT200 monitor}
-which runs Ubuntu 14.04. The computer is powered by the RMPs battery, thus
-removing the need for an external car battery (which was present in our version
-2 robots).  The battery life on a running robot is approximately 6 hours when
-actively using the base, and 10 when stationary.
+Our latest generation robot uses the newer RMP 210 version which comes with two
+integrated lithium-ion batteries and can navigate at velocities up to $8
+ms^{-1}$ and carry up to $45 kg$ of payload. The frame was designed in-house
+and supports a wide array of sensors. For navigation, localization, and
+obstacle avoidance, we use a Velodyne VLP-16 Puck LIDAR. Point clouds (3D voxel
+map) and video data are provided by an Xtion Pro, a device very similar to the
+Microsoft Kinect. Our latest generation robots also have an additional Hokuyo
+URG-04LX laser range finder to compensate for the LIDAR's blind spots. The
+robot is equipped with a custom-built computer\footnote{3.9Ghz i7 processor,
+16GB ddr3 RAM, Gigabyte GA-Q87TN motherboard, HDPLEX H1.S heatsink case, and a
+Acer FT200 monitor} which runs Ubuntu 14.04. The computer is powered by the
+RMPs battery, thus removing the need for an external car battery (which was
+present in our version 2 robots).  The battery life on a running robot is
+approximately 6 hours when actively using the base, and 10 when stationary.
 
 \subsection{Software Stack}
 
@@ -202,7 +203,7 @@ then moves to the logical navigator which uses the previous laser readings (in
 the form of adjacency maps) and what it knows about the environment to create
 the navigation plan. Finally, the local planner uses the immediate sensor
 readings to send commands to the segway base and avoid any obstacles.
-
+D
 All of our software is open source and freely available
 online\footnote{\url{http://github.com/utexas-bwi}}.
 
