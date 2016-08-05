@@ -147,6 +147,7 @@ platform versions, and will adapt its features accordingly (based on which
 robot you connect to). However, since Virtour is mostly used on the version 3
 robot, we will describe only the latest hardware platform.
 
+
 \begin{figure}[!tbp]
   \begin{subfigure}[b]{0.3\textwidth}
     \includegraphics[width=\textwidth]{bwi_segbot2}
@@ -199,13 +200,17 @@ systems.
 Our navigation stack begins with the logical planner, which uses Answer Set
 Programming (ASP) to plan and describe the environment such as which corridors
 connect with which hallways, and which doors are open \citep{lifschitz2008}. It
-then moves to the logical navigator which uses the previous laser readings (in
+then moves to the logical navigator which uses current and previous laser readings (in
 the form of adjacency maps) and what it knows about the environment to create
 the navigation plan. Finally, the local planner uses the immediate sensor
 readings to send commands to the segway base and avoid any obstacles.
-D
-All of our software is open source and freely available
-online\footnote{\url{http://github.com/utexas-bwi}}.
+
+Almost all of the software that runs on our robots is open source. Furthermore,
+all of the code that we write is also open source and available in the public
+domain\footnote{\url{https://github.com/utexas-bwi}}. Our software is also
+released as ROS packages back to the community and is available to install as
+binaries\footnote{\url{http://wiki.ros.org/bwi} and
+\url{http://wiki.ros.org/segbot}}
 
 \section{The Web Client}\label{sec:client}
 
