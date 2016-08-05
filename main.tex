@@ -44,9 +44,9 @@
   a map where users can select their desired destination and have the robot
   autonomously navigate there, thus eliminating the risk of exposing real-time
   teleoperated movement. As a result we can provide users an immersive
-  telepresence system, which is safe to use (all navigation is handled
-  autonomously), and provides value to our lab and department by allowing
-  students that are unable to visit to experience the areas first-hand.
+  telepresence system, which is safe to use, and provides value to our lab and
+  department by allowing students that are unable to visit to experience the
+  areas first-hand.
 \end{abstract}
 
 %\tableofcontents
@@ -149,10 +149,10 @@ in the building.
 
 Virtour builds on existing work done on the BWI project. The BWI lab has done
 extensive work on planning and learning of action costs which enables the
-robots efficiently and hierarchically plan high level tasks such as navigating
-to rooms \citep{yang2014, khandelwal2014}. Virtour extends on this and the work
-on navigation and localization to provide users with the ability to navigate
-and track the robots remotely.
+robots to efficiently and hierarchically plan high level tasks such as
+navigating to rooms \citep{yang2014, khandelwal2014}. Virtour extends on this
+and the work on navigation and localization to provide users with the ability
+to navigate and track the robots remotely.
 
 Furthermore, Virtour runs on the BWI segbot robot platform --- our in-house robot
 platform which has been in development for over 4 years. Currently, our lab has
@@ -236,7 +236,7 @@ binaries\footnote{\url{http://wiki.ros.org/bwi} and
 
 \begin{figure}
   \centering
-  \includegraphics[width=3.5in]{virtour_client}
+  \includegraphics[width=\textwidth]{virtour_client}
   \caption{Overview of the Virtour client structure and hierarchy}
   \label{fig:client}
 \end{figure}
@@ -312,7 +312,7 @@ with the leader UI.
 
 \begin{figure}
   \centering
-  \includegraphics[width=3in]{leader_ui}
+  \includegraphics[width=\textwidth]{leader_ui}
   \caption{The controls available to the leader}
   \label{fig:leader_controls}
 \end{figure}
@@ -333,7 +333,7 @@ capabilities is as follows
 
 \begin{figure}
   \centering
-  \includegraphics[width=3in]{nav_ui}
+  \includegraphics[width=\textwidth]{nav_ui}
   \caption{Navigation interface for leaders}
   \label{fig:nav_interface}
 \end{figure}
@@ -359,7 +359,7 @@ can control robot.
 
 \begin{figure}
   \centering
-  \includegraphics[height=2in]{guestUI}
+  \includegraphics[width=\textwidth]{guestUI}
   \caption{What the client sees whenever they are in guest mode}
   \label{fig:guest_mode}
 \end{figure}
@@ -443,7 +443,7 @@ rotation is always safe.
 
 \begin{figure}
   \centering
-  \includegraphics[width=3.5in]{virtour_server}
+  \includegraphics[width=\textwidth]{virtour_server}
   \caption{Overview of the Virtour server structure and hierarchy}
   \label{fig:server}
 \end{figure}
@@ -518,7 +518,7 @@ script is configured using a cronjob which runs every three minutes.
 
 \begin{figure}
   \centering
-  \includegraphics[width=3in]{scav_certs}
+  \includegraphics[width=\textwidth]{scav_certs}
   \caption{Screenshot of scavenger hunt task status and certificate display}
   \label{fig:scav}
 \end{figure}
@@ -563,8 +563,7 @@ messages, or perform scavenger hunt tasks. Users can experience the tour
 through the on-board camera which is streamed dynamically to the website as
 well as to track the robot's movement using the real-time map.
 
-However, there is still work left in building a more complete virtual tour
-system. Further work could extend the navigation system to allow the users
+Further work could extend the navigation system to allow the users
 point-and-click navigation to arbitrary points, while still maintaining shared
 autonomy. There is also work in adding more ways for remote users to interact
 with the robot's environment, such as using actuators or interacting via a
@@ -583,13 +582,12 @@ used.
 
 \section{Acknowledgments}\label{sec:acks}
 
-Virtour couldn't have been accomplished without the help and support of my
-original research educator Matteo Leonetti, and my current research educator
-Jivko Sinapov. Thank you to Peter Stone for providing direction and for all his
-support. Thanks to Shiqi Zhang for helping and me with the scavenger hunt
-integration. Finally, thank you to Maxwell Svetlik for insightful comments and
-help through the project, Walter Sagehorn for helping develop smallDNS and to
-Benjamin Singer for developing the message delivery tasks.
+Virtour could not have been accomplished without the guidance and support of my
+original research advisor Matteo Leonetti, and my current research advisors
+Jivko Sinapov and Peter Stone. Shiqi Zhang for helping with the scavenger hunt
+integration. Maxwell Svetlik for insightful comments and support through the
+project, Walter Sagehorn for helping develop smallDNS and to Benjamin Singer
+for developing the message delivery tasks.
 
 \nocite{*}
 \bibliographystyle{apacite}
