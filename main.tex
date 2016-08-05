@@ -134,12 +134,6 @@ we transition all our robots to new hardware and software. Although Virtour
 supports both versions, and will adapt its features accordingly, it is mostly
 used on the latest generation so that is what is described.
 
-%\begin{figure}
-%\centering
-%\includegraphics[height=2in]{bwi}
-%\caption{Two of our first generation BWI robots}
-%\end{figure}
-
 \begin{figure}[!tbp]
   \begin{subfigure}[b]{0.3\textwidth}
     \includegraphics[width=\textwidth]{bwi_segbot2}
@@ -156,7 +150,7 @@ used on the latest generation so that is what is described.
     \caption{Segbot arm}
   \end{subfigure}
   \caption{Our lab's three active robot platforms}
-  \label{fig:homepage}
+  \label{fig:robots}
 \end{figure}
 
 \subsection{Hardware Platform}
@@ -199,9 +193,10 @@ online\footnote{\url{http://github.com/utexas-bwi}}.
 \section{The Web Client}\label{sec:client}
 
 \begin{figure}
-\centering
-\includegraphics[width=3in]{virtour_client}
-\caption{Overview of the Virtour client structure and hierarchy}
+  \centering
+  \includegraphics[width=3in]{virtour_client}
+  \caption{Overview of the Virtour client structure and hierarchy}
+  \label{fig:client}
 \end{figure}
 
 Virtour consists of two platforms, the user facing client, and associated
@@ -260,9 +255,10 @@ with the leader UI.
 \subsection{Leader User Interface}
 
 \begin{figure}
-\centering
-\includegraphics[width=3in]{leader_ui}
-\caption{The controls available to the leader}
+  \centering
+  \includegraphics[width=3in]{leader_ui}
+  \caption{The controls available to the leader}
+  \label{fig:leader_controls}
 \end{figure}
 
 The leader UI adds a number of components to that allow the user to
@@ -280,9 +276,10 @@ is as follows
 \end{itemize}
 
 \begin{figure}
-\centering
-\includegraphics[width=3in]{nav_ui}
-\caption{Navigation interface for leaders}
+  \centering
+  \includegraphics[width=3in]{nav_ui}
+  \caption{Navigation interface for leaders}
+  \label{fig:nav_interface}
 \end{figure}
 
 The user can interact with the interface to request any of the tasks. For
@@ -311,9 +308,10 @@ can control robot.
 \subsection{Guest User Interface}
 
 \begin{figure}
-\centering
-\includegraphics[height=2in]{guestUI}
-\caption{What the client sees whenever they are in guest mode}
+  \centering
+  \includegraphics[height=2in]{guestUI}
+  \caption{What the client sees whenever they are in guest mode}
+  \label{fig:guest_mode}
 \end{figure}
 
 The guest UI is the default interface presented to the user whenever he or she
@@ -394,9 +392,10 @@ rotation is always safe.
 \section{The Server}\label{sec:server}
 
 \begin{figure}
-\centering
-\includegraphics[width=3in]{virtour_server}
-\caption{Overview of the Virtour server structure and hierarchy}
+  \centering
+  \includegraphics[width=3in]{virtour_server}
+  \caption{Overview of the Virtour server structure and hierarchy}
+  \label{fig:server}
 \end{figure}
 
 The server consists of a number of components which run on the physical robot
@@ -465,10 +464,10 @@ script is configured using a cronjob which runs every three minutes.
 \section{Scavenger Hunt Integration}\label{sec:scav}
 
 \begin{figure}
-\centering
-\includegraphics[width=3in]{scav_certs}
-\caption{Screenshot of scavenger hunt task status and certificate display}
-\label{scavfig}
+  \centering
+  \includegraphics[width=3in]{scav_certs}
+  \caption{Screenshot of scavenger hunt task status and certificate display}
+  \label{fig:scav}
 \end{figure}
 
 In addition to the remote control capabilities available through our website,
@@ -492,7 +491,7 @@ currently running tasks by clicking on the scavenger hunt button. The
 server-side portion of Virtour comes integrated with an HTTP image web server
 which is used to provide the user interface with images of the complete tasks.
 So if a task is completed Virtour will display the certificate on the website
-as thumbnails on the list (illustrated in Figure \ref{scavfig}) but they can
+as thumbnails on the list (illustrated in Figure \ref{fig:scav}) but they can
 expanded to see the full-size image by clicking on them. Finally, if the user
 is the leader, they can also control the operation of the scavenger hunt by
 stopping and resuming the current task. This allows a user to stop the current
