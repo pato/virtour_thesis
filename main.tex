@@ -127,27 +127,43 @@ intersection of Artificial Intelligence and Robotics, and works to create
 robots that are useful as research platforms, as well as helpful to the humans
 in the building.
 
-Virtour runs on the BWI segbot robot platform. Currently, our lab has four 
-active robots. Three of which are based on the older generation hardware and
-software (version 2). We have one version 3 robot which has been our pilot as
-we transition all our robots to new hardware and software. Although Virtour
-supports both versions, and will adapt its features accordingly, it is mostly
-used on the latest generation so that is what is described.
+Virtour builds on existing work done on the BWI project. The BWI lab has done
+extensive work on planning and learning of action costs which enables the
+robots efficiently and hierarchically plan high level tasks such as navigating
+to rooms \citep{yang2014}. Virtour extends on this and the work on navigation and
+localization to provide users with the ability to navigate and track the robots
+remotely.
+
+Furthermore, Virtour runs on the BWI segbot robot platform --- our in-house robot
+platform which has been in development for over 4 years. Currently, our lab has
+four active robots. Three of the robots are based on the older generation
+hardware and software (version 2 as depicted in figure \ref{fig:segbotv2}) one
+of which is also equipped with a Kinova Mico Arm\footnote{the 6 degrees of
+freedom version which has a reach of 700 mm and a mid-range payload capacity of
+2.1 kg} (shown in figure \ref{fig:segbotarm}).  We have one version 3 robot
+(depicted in figure \ref{fig:segbotv3}), which has been our pilot as we
+transition all our robots to new hardware and software.  Virtour supports both
+platform versions, and will adapt its features accordingly (based on which
+robot you connect to). However, since Virtour is mostly used on the version 3
+robot, we will describe only the latest hardware platform.
 
 \begin{figure}[!tbp]
   \begin{subfigure}[b]{0.3\textwidth}
     \includegraphics[width=\textwidth]{bwi_segbot2}
     \caption{Segbot v2}
+    \label{fig:segbotv2}
   \end{subfigure}
   \hfill
   \begin{subfigure}[b]{0.3\textwidth}
     \includegraphics[width=\textwidth]{bwi_segbot3}
     \caption{Segbot v3}
+    \label{fig:segbotv3}
   \end{subfigure}
   \hfill
   \begin{subfigure}[b]{0.3\textwidth}
     \includegraphics[width=\textwidth]{bwi_segbotarm}
     \caption{Segbot arm}
+    \label{fig:segbotarm}
   \end{subfigure}
   \caption{Our lab's three active robot platforms}
   \label{fig:robots}
