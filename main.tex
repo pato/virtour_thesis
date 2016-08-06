@@ -33,7 +33,7 @@
   In this paper we describe Virtour, a public facing system for teleoperated
   building tours. It aims to facilitate lab and departmental tours by creating
   a system wherein prospective students can remotely operate a wheeled robot
-  around the Learning Agents Research Group lab and the rest of the computer
+  around the Building-Wide Intelligence lab and the rest of the computer
   science building. Virtour's server architecture builds on the existing
   Building-Wide Intelligence autonomous robot platform, which is capable of
   autonomous localization, planning, and navigation. The web client interface
@@ -45,8 +45,8 @@
   have the robot autonomously navigate there. This approach eliminates the risk
   of human navigation error by abstracting away movement commands. As a result
   we can provide users an immersive telepresence system, which is safe to use,
-  and provides value to our lab and department by allowing anyone to visit to
-  experience the areas first-hand.
+  and provides a service to our lab and department by allowing anyone to visit
+  to experience the areas first-hand.
 \end{abstract}
 
 %\tableofcontents
@@ -72,7 +72,7 @@ robots in what we call a virtual tour. Our system is created under the
 principle of shared autonomy which aims to balance external control abilities
 while maintaining our rigorous standard of safety and security for the robots
 and people involved. As such it gives the user control of what the robot is
-doing, while simultaneously using existing the autonomous navigation
+doing, while simultaneously using the existing the autonomous navigation
 capabilities and obstacle avoidance to ensure safety and correct operation.
 
 The two major contributions of this work are as follows. First, the server and
@@ -110,10 +110,10 @@ a Java web-applet.
 
 \citet{kim2004} developed Jinny in 2004, which was yet another autonomous
 tour-guide robot. Their relevant contribution was the upgraded web-based
-interface which allowed the user to interact with the natural language parsing
-system and ask questions, as well as request actions. Their system was built
-using Java, ActiveX, and JavaScript, all of which require special installation
-for the users.
+interface which allowed the user to interact with a natural language parsing
+system to ask questions, as well as request actions. Their system was built
+using Java and ActiveX, both of which require special installation for the
+users.
 
 Virtour differs from these related works in a number of ways. The first is that
 Virtour's main purpose is to be a telepresence tour system, and thus gives web
@@ -150,7 +150,7 @@ hardware and software (version 2 as depicted in figure \ref{fig:segbotv2}) one
 of which is also equipped with a Kinova Mico Arm\footnote{the 6 degrees of
 freedom version which has a reach of 700 mm and a mid-range payload capacity of
 2.1 kg} (shown in figure \ref{fig:segbotarm}).  We have one version 3 robot
-(depicted in figure \ref{fig:segbotv3}), which has been our pilot as we
+(depicted in figure \ref{fig:segbotv3}), which has been our pilot test as we
 transition all our robots to new hardware and software.  Virtour supports both
 platform versions, and will adapt its features accordingly (based on which
 robot you connect to). However, since Virtour is mostly used on the version 3
@@ -182,8 +182,8 @@ robot, we will describe only the latest hardware platform.
 
 All of our robots are powered by the Segway Robotics Mobility Platform (RMP).
 Our latest generation robot uses the newer RMP 210 version which comes with two
-integrated lithium-ion batteries and can navigate at speeds up to $8
-m/s$ and carry up to $45 kg$ of payload. The frame was designed in-house
+integrated lithium-ion batteries and can navigate at speeds up to 8
+m/s and carry up to 45 kg of payload. The frame was designed in-house
 and supports a wide array of sensors. For navigation, localization, and
 obstacle avoidance, we use a Velodyne VLP-16 Puck LIDAR. Point clouds (3D voxel
 map) and video data are provided by an Xtion Pro, a device very similar to the
@@ -194,7 +194,8 @@ robot is equipped with a custom-built computer\footnote{3.9Ghz i7 processor,
 Acer FT200 monitor} which runs Ubuntu 14.04. The computer is powered by the
 RMPs battery, thus removing the need for an external car battery (which was
 present in our version 2 robots).  The battery life on a running robot is
-approximately 6 hours when actively using the base, and 10 when stationary.
+approximately 6 hours when actively using the base for navigation, and 10 when
+stationary.
 
 \subsection{Software Stack}
 
@@ -210,7 +211,7 @@ planning \citep{zhang2014}. The navigation stack begins with the logical
 planner, which uses Answer Set Programming (ASP) to plan and describe the
 environment such as which corridors connect with which hallways, and which
 doors are open \citep{lifschitz2008}. It then moves to the logical navigator
-which uses current and previous laser readings (in the form of adjacency maps)
+which uses current and previous laser readings (in the form of occupancy maps)
 and what it knows about the environment to create the navigation plan. Finally,
 the local planner uses the immediate sensor readings to send commands to the
 segway base and avoid any obstacles.
@@ -219,23 +220,23 @@ Almost all of the software that runs on our robots is open source. Furthermore,
 all of the code that we write is also open source and available in the public
 domain\footnote{\url{https://github.com/utexas-bwi}}. Our software is also
 released as ROS packages back to the community and is available to install as
-binaries\footnote{\url{http://wiki.ros.org/bwi} and
+binaries.\footnote{\url{http://wiki.ros.org/bwi} and
 \url{http://wiki.ros.org/segbot}}
 
-\subsection{Related Work}
+\subsection{BWI Related Work}
 
 The BWI lab has done extensive work on the planning and learning of action
-cost. This enables them to plan high level tasks such as navigating to floors
-using hierarchical planning \citep{yang2014, khandelwal2014}. Using the robot's
-point-cloud sensors we also developed a system to perform activity recognition
-\citep{gori2015robot}. We have also developed systems for multi-robot guidance
-that enable our robots to guide humans to their desired locations
-\citep{khandelwal2015, khandelwal2014multi}. The segbot arm robot has also
-allowed us to develop systems for grounded language learning by playing a game
-of I, Spy \citep{thomason2016} as well through human-robot dialog
+cost. This enables our robots to plan high level tasks such as navigating to
+floors using hierarchical planning \citep{yang2014, khandelwal2014}. Using the
+robot's point-cloud sensors we also developed a system to perform human
+activity recognition \citep{gori2015robot}. We have also developed systems for
+multi-robot guidance that enable our robots to guide humans to their desired
+locations \citep{khandelwal2015, khandelwal2014multi}. The segbot arm robot has
+also allowed us to develop systems for grounded language learning by playing a
+game of I, Spy \citep{thomason2016} as well through human-robot dialog
 \citep{thomason2015learning}. Similarly, we used the robot arm to perform
 object exploration and ordering using haptic exploratory behaviors
-\citep{sinapov2016}. In the area of activity recognition
+\citep{sinapov2016}.
 
 \section{The Web Client}\label{sec:client}
 
@@ -246,7 +247,7 @@ development trends and simultaneously support as many platforms as possible. We
 decided to use a web-based client because of the increasing prominence of web
 browsers in people's lives. Furthermore, a web based approach means that our
 end-users do not have to install any additional software to connect with or use
-the robots, thus reducing the friction for trying our service.
+the robots, thus reducing the friction for trying our system.
 
 \subsection{Client Architecture}
 
@@ -257,9 +258,9 @@ communicate with individual robot components such as the tour manager and
 navigation managers. All ROS requests are routed through
 roslibjs\footnote{\url{http://wiki.ros.org/roslibjs}} which serializes them and
 uses a SOCKET connection to send them to the robot. The image and video
-streaming are done without roslibjs for optimization reasons and as such as two
+streaming are done without roslibjs for optimization reasons and are two
 separate connections to the robot. In total the web client communicates to the
-robot via three different ports. The hierarchy of components and connections
+robot using three different connections. The hierarchy of components and connections
 can be seen in Figure \ref{fig:client}. 
 
 \begin{figure}[t!]
@@ -279,15 +280,16 @@ popular front-end library Bootstrap
 2.0\footnote{\url{https://getbootstrap.com/}}, to create a fully responsive web
 layout. This allows us to support any web-powered platform (e.g., mobile
 devices, tablets, and computers) by making the website scale and re-organize
-based on the specifications of the device.
+based on the specifications of the device such as the screen resolution and
+screen size (an example of scaling can be seen in Figure \ref{fig:homepage}).
 
 When on the website, the user is greeted by a list of our currently active and
-available robots. Each robot is represented by a name and associated
-picture\footnote{All of our robots are named after Futurama characters}. From
-here a user can select a robot to connect to by clicking on the robot's name
-or image. When the user clicks on the robot, the web client will initiate a
-request to the specified robot requesting a tour. If the connection is
-successful the client will switch into a tour session.
+available robots (as seen in Figure \ref{fig:homepage}). Each robot is
+represented by a name and associated picture\footnote{All of our robots are
+named after Futurama characters}. From here a user can select a robot to
+connect to by clicking on the robot's name or image. When the user clicks on
+the robot, the web client will initiate a tour request to the specified robot.
+If the connection is successful the client will switch into a tour session.
 
 Tour sessions can be either led or spectated. When spectating, the user has no
 control over the robot but can see the video stream, robot status, and track
@@ -297,9 +299,9 @@ most one leader, but no limit to the number of spectators. We built Virtour
 this way to ensure there is a consistent leader experience (to avoid tour
 contention by multiple users), and for security reasons, since we can control
 whether a leader is allowed or not. If the tour has no existing leader and
-tours are allowed then a visiting user can elect to become tour leader by
+tours are allowed then a visiting user can choose to become tour leader by
 pressing the ``Become Leader'' button. Upon success, it will present the user
-with the leader UI.
+with the leader user interface (UI).
 
 \begin{figure}[!tbp]
   \begin{subfigure}[b]{0.63\textwidth}
@@ -351,7 +353,8 @@ capabilities is as follows
 The user can interact with the interface to request any of the tasks. For
 example, whenever the user is the leader, a pair of directional arrow buttons
 is shown which will immediately rotate the robot when pressed. Navigation
-commands are accessed within the navigation pane.
+commands are accessed within the navigation pane which can be accessed by
+clicking on the mini map.
 
 Whenever a user first connects to a robot, the web client will query the robot
 for the capabilities that it has (e.g., which generation robot, which cameras it
@@ -370,8 +373,8 @@ can control robot.
 \begin{figure}
   \centering
   \includegraphics[width=0.95\textwidth]{guestUI}
-  \caption{What a user might see whenever they connect to a robot but are not
-  tour leader}
+  \caption{What a user might see whenever they connected to a robot but are not
+  the tour leader}
   \label{fig:guest_mode}
 \end{figure}
 
@@ -391,59 +394,55 @@ on-going, allowed, or disabled. From here the user can request to become tour
 leader (if available), or wait for a tour to be available. All our robots have
 the guest UI enabled at all times, so that users can remotely connect to the
 robots and experience what they are doing. For privacy reasons, the robot will
-have turn on indicator lights (mounted LED strips) whenever there is someone
-streaming video (at the moment only supported in our latest generation robot).
+have turn on indicator lights (using the mounted individually-addressable LED
+strips) whenever there is someone streaming video (at the moment only supported
+in our latest generation robot).
 
 \section{Security and Safety}\label{sec:security}
 
 Security was a top concern in designing Virtour since the system allows
 external parties to remotely operate our robots. Our two main security
-objectives were to prevent unapproved interactions with the robots and to
-prevent unauthorized access to Virtour. Furthermore, since the robots are
-physically navigating potentially crowded spaces, we wanted to make sure that
-safety was our number one priority.
+objectives were to prevent unapproved or harmful interactions with the robots
+and to prevent unauthorized access to Virtour. Furthermore, since the robots
+are physically navigating potentially crowded spaces, we wanted to make sure
+that safety was a top priority.
 
 \subsection{Client Side}
 
 The client works to prevent unapproved interactions by only presenting the user
-with ability to interact with the robot in the approved manners. On the
+with ability to interact with the robot in the approved behaviors. On the
 JavaScript client-side, we also only create service and action clients (the
 communication methods that are used to request actions on the robot) that
-perform specific tasks, rather than general-purpose clients. Each client is
-assigned a universally unique identifier (UUID) which is used to authenticate
-all communication with the robot.
-
-To ensure the safety of users, the client only provides the user with the
-ability to perform two potentially hazardous operations: rotate and navigate.
-Both of these operations are moderated server side to ensure that safety is
-always maintained.
+perform specific tasks, rather than general-purpose clients. This reduces the
+likelihood of an end-user issuing unapproved commands. To identify users, each
+client is assigned a universally unique identifier (UUID) which is used to
+authenticate all communication with the robot.
 
 \subsection{Server Side}
 
 For security reasons, we only allow outside parties to become leaders (and thus
 have control of the robot's operations) if we explicitly enable virtual tours
 on the robot. Unlike the guest UI which is enabled any time the robot running,
-the server implementation of leader control is enabled by default to prevent
+the server implementation of leader control is disabled by default to prevent
 unexpected access. Furthermore, all operations which affect the state of the
 robot (ie: rotating and navigating) require proper authentication. The server
 keeps track of the UUID of the currently active leader, and will only grant
 that specific client the ability to control the robot. This prevents
-unauthorized users from executing arbitrary actions on the robot. To prevent
-denial of service by any one leader (by not relinquishing their leadership or
-dropping the connection), the server uses the ping system to ensure that the
-leader is alive and connected, as well as an established timeout to prevent any
-one valid leader from preventing others from becoming leader. Furthermore,
-there is a 15 minute time limit per leader, to avoid a single leader taking
-control of the system. Finally, we always have the option to disable tours (via
-the tour manager) which will immediately evict any active leaders and restore
-control of the robot.
+unauthorized users from executing actions on the robot. To prevent denial of
+service by any one leader (by not relinquishing their leadership or dropping
+the connection), the server uses the ping system to ensure that the leader is
+alive and connected. Furthermore, there is a 15 minute time limit per leader,
+to avoid a single leader taking perpetual control of the system. Finally, we
+always have the option to disable tours (via the tour manager) which will
+immediately evict any active leaders and revoke all remote control of the
+robot.
 
 Safety for users and the robot is ensured through the use of shared autonomy.
 Whenever users request navigation to locations via the client UI, the robot
 will perform the navigation using the full navigation stack which includes the
-global obstacle planning and local obstacle avoidance. Furthermore, the server
-has a whitelist (list of pre-approved locations the users can request on the
-client) which it uses to verify all navigation requests, to prevent navigation
+global planner and local obstacle avoidance. Furthermore, the server
+has a whitelist of pre-approved locations the users can request on the
+client which it uses to verify all navigation requests, to prevent navigation
 to incorrect or invalid locations. Finally, because of the way rotation is
 implemented, the robot stays entirely within its footprint when it rotates.
 When combined with the safety of our navigation stack, this means that in-place
@@ -475,29 +474,27 @@ communications can be seen in Figure \ref{fig:server}.
 
 The tour manager serves the role of maintaining tour integrity and managing
 active connections with all the clients that are connected to the robot. It
-keeps track of an internal state machine which controls whether tours are
+maintains of an internal state machine to keep track of whether tours are
 enabled and, if so, whether one is active. It will also maintain connection
 with the tour leader through pings to ensure the leader remains alive. If the
 leader disconnects (by closing the page) or is disconnected (missing a ping),
 the tour manager will demote them and make tour leadership available again. The
-tour manager will also grant tour leader status to clients that properly
-request it whenever tours are enabled.
+tour manager is also responsible for granting tour leader status to clients
+that properly request it whenever tours are enabled.
 
 \subsubsection{Robot Control}
 
 The server-side code powering the remote robot control consist of various
 service providers which use the tour manager to authenticate requests, and then
-translate them to the appropriate robot commands. For example, the rotate control
-will take the rotate command (if properly authenticated) and then translate it
-to raw segway base navigation commands, which is considered safe because
-rotation stays within the robot's footprint so we do not need to consider
-obstacle avoidance. However, obstacle avoidance is very important whenever we
-are navigating to rooms or doors. For this reason, all navigation commands will
-go to the logical planner in the form of ASP goals. For example, a request to
-navigate to a specific office will be turned into an ASP goal such that it is
-impossible for the robot to not be in that location. The navigation and
-planning stack then take over and will perform the planning and navigation
-required to accomplish the goal.
+translate them to the appropriate robot commands. For example, the rotate
+control will take the rotate command (if properly authenticated) and then
+translate it to raw segway base navigation commands. Message delivery and
+speaking requests will be routed to their appropriate service providers.
+Similarly all door or room navigation requests will go to the logical planner
+in the form of ASP goals. For example, a request to navigate to a specific
+office will be turned into an ASP goal such that it is impossible for the robot
+to not be in that location. The navigation and planning stack then take over
+and will perform the planning and navigation required to accomplish the goal.
 
 \subsection{IP management}
 
@@ -505,12 +502,12 @@ In order to manage the IP addresses of all the robots, we created
 smallDNS\footnote{Source code is available at
 \url{https://github.com/pato/smallDNS}} (small multi-agent locally listable
 DNS). SmallDNS keeps track of the IP addresses of each of the robots (which are
-dynamically assigned and thus changed from time to time). Furthermore, it also
+dynamically assigned and thus change from time to time). Furthermore, it also
 keeps track of which robots are available and running via series of pings. This
-means that the end user does not need to worry about the IPs of the robots or
-which ones are alive. So when the user visits the home page (figure 3), they
-will see the list of currently active robots and will be able to connect to
-each without having to know the IP address.
+means that the end user does not need to worry about the changing IPs of the
+robots or which ones are alive. So when the user visits the home page (figure
+3), they will see the list of currently active robots and will be able to
+connect to each without having to know the IP address.
 
 SmallDNS consists of a simple DNS server running on our master server, which is
 accessible from all our robots. The server was written in Python and can
@@ -547,9 +544,9 @@ four tasks in the task library which require the robot to find a human wearing
 a specific colored shirt, to follow a human for more than 10 meters, to deliver
 a given object, and to find a specific object. All four of these task
 variations require a certificate of work which are images of the task being
-accomplished (e.g., a picture of a human wearing a blue shirt). Whenever we
-participate, each robot is assigned a random set of daily tasks that it must
-then work to finish.
+accomplished (e.g., a picture of a human wearing a blue shirt). Whenever a
+robot participates in the scavenger hunt, it is assigned a random set of daily
+tasks that it must then work to finish that day.
 
 Whenever a user uses Virtour to connect with a robot running the scavenger
 hunt, Virtour will detect the scavenger hunt and allow the users to interact
@@ -557,13 +554,13 @@ with the scavenger hunt. For example, the user can see the list of the
 currently running tasks by clicking on the scavenger hunt button. The
 server-side portion of Virtour comes integrated with an HTTP image web server
 which is used to provide the user interface with images of the complete tasks.
-So if a task is completed Virtour will display the certificate on the website
-as thumbnails on the list (illustrated in Figure \ref{fig:scav}) but they can
-expanded to see the full-size image by clicking on them. Finally, if the user
-is the leader, they can also control the operation of the scavenger hunt by
-stopping and resuming the current task. This allows a user to stop the current
-scavenger hunt task, then navigate the robot elsewhere or perform any other
-supported operation, and resume the scavenger hunt later.
+So if available, Virtour will display the certificates on the website as
+thumbnails on the scavenger hunt task list (illustrated in Figure
+\ref{fig:scav}) but they can expanded to see the full-size image by clicking on
+them. Finally, if the user is the leader, they can also control the operation
+of the scavenger hunt by stopping and resuming the current task. This allows a
+user to stop the current scavenger hunt task, then navigate the robot elsewhere
+or perform any other supported operation, and resume the scavenger hunt later.
 
 \section{Conclusions and Future Work}\label{sec:conclusion}
 
@@ -591,8 +588,8 @@ which could target other commercial uses such as hospitals (for family visits,
 or nurse checkups), as well other research-oriented projects such as HRI
 studies or robot monitoring systems. Most of our work is directly applicable
 and can be tailored to many different uses, since the communication,
-authentication, and interaction protocols that Virtour uses can be independently
-used.
+authentication, and interaction protocols that Virtour uses can be used
+independently.
 
 \section{Acknowledgments}\label{sec:acks}
 
