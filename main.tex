@@ -399,56 +399,6 @@ have turn on indicator lights (using the mounted individually-addressable LED
 strips) whenever there is someone streaming video (at the moment only supported
 in our latest generation robot).
 
-\section{Security and Safety}\label{sec:security}
-
-Security was a top concern in designing Virtour since the system allows
-external parties to remotely operate our robots. Our two main security
-objectives were to prevent unapproved or harmful interactions with the robots
-and to prevent unauthorized access to Virtour. Furthermore, since the robots
-are physically navigating potentially crowded spaces, we wanted to make sure
-that safety was a top priority.
-
-\subsection{Client Side}
-
-The client works to prevent unapproved interactions by only presenting the user
-with ability to interact with the robot in the approved behaviors. On the
-JavaScript client-side, we also only create service and action clients (the
-communication methods that are used to request actions on the robot) that
-perform specific tasks, rather than general-purpose clients. This reduces the
-likelihood of an end-user issuing unapproved commands. To identify users, each
-client is assigned a universally unique identifier (UUID) which is used to
-authenticate all communication with the robot.
-
-\subsection{Server Side}
-
-For security reasons, we only allow outside parties to become leaders (and thus
-have control of the robot's operations) if we explicitly enable virtual tours
-on the robot. Unlike the guest UI which is enabled any time the robot running,
-the server implementation of leader control is disabled by default to prevent
-unexpected access. Furthermore, all operations which affect the state of the
-robot (ie: rotating and navigating) require proper authentication. The server
-keeps track of the UUID of the currently active leader, and will only grant
-that specific client the ability to control the robot. This prevents
-unauthorized users from executing actions on the robot. To prevent denial of
-service by any one leader (by not relinquishing their leadership or dropping
-the connection), the server uses the ping system to ensure that the leader is
-alive and connected. Furthermore, there is a 15 minute time limit per leader,
-to avoid a single leader taking perpetual control of the system. Finally, we
-always have the option to disable tours (via the tour manager) which will
-immediately evict any active leaders and revoke all remote control of the
-robot.
-
-Safety for users and the robot is ensured through the use of shared autonomy.
-Whenever users request navigation to locations via the client UI, the robot
-will perform the navigation using the full navigation stack which includes the
-global planner and local obstacle avoidance. Furthermore, the server
-has a whitelist of pre-approved locations the users can request on the
-client which it uses to verify all navigation requests, to prevent navigation
-to incorrect or invalid locations. Finally, because of the way rotation is
-implemented, the robot stays entirely within its footprint when it rotates.
-When combined with the safety of our navigation stack, this means that in-place
-rotation is always safe.
-
 
 \section{The Server}\label{sec:server}
 
@@ -523,6 +473,57 @@ Each of the robots has a bash script which checks the robot's IP address against
 last update IP address to see if there is a change. If the IP has changed, the robot
 will perform an update request on the server to inform it of the new address. This
 script is configured using a cronjob which runs every three minutes.
+
+\section{Security and Safety}\label{sec:security}
+
+Security was a top concern in designing Virtour since the system allows
+external parties to remotely operate our robots. Our two main security
+objectives were to prevent unapproved or harmful interactions with the robots
+and to prevent unauthorized access to Virtour. Furthermore, since the robots
+are physically navigating potentially crowded spaces, we wanted to make sure
+that safety was a top priority.
+
+\subsection{Client Side}
+
+The client works to prevent unapproved interactions by only presenting the user
+with ability to interact with the robot in the approved behaviors. On the
+JavaScript client-side, we also only create service and action clients (the
+communication methods that are used to request actions on the robot) that
+perform specific tasks, rather than general-purpose clients. This reduces the
+likelihood of an end-user issuing unapproved commands. To identify users, each
+client is assigned a universally unique identifier (UUID) which is used to
+authenticate all communication with the robot.
+
+\subsection{Server Side}
+
+For security reasons, we only allow outside parties to become leaders (and thus
+have control of the robot's operations) if we explicitly enable virtual tours
+on the robot. Unlike the guest UI which is enabled any time the robot running,
+the server implementation of leader control is disabled by default to prevent
+unexpected access. Furthermore, all operations which affect the state of the
+robot (ie: rotating and navigating) require proper authentication. The server
+keeps track of the UUID of the currently active leader, and will only grant
+that specific client the ability to control the robot. This prevents
+unauthorized users from executing actions on the robot. To prevent denial of
+service by any one leader (by not relinquishing their leadership or dropping
+the connection), the server uses the ping system to ensure that the leader is
+alive and connected. Furthermore, there is a 15 minute time limit per leader,
+to avoid a single leader taking perpetual control of the system. Finally, we
+always have the option to disable tours (via the tour manager) which will
+immediately evict any active leaders and revoke all remote control of the
+robot.
+
+Safety for users and the robot is ensured through the use of shared autonomy.
+Whenever users request navigation to locations via the client UI, the robot
+will perform the navigation using the full navigation stack which includes the
+global planner and local obstacle avoidance. Furthermore, the server
+has a whitelist of pre-approved locations the users can request on the
+client which it uses to verify all navigation requests, to prevent navigation
+to incorrect or invalid locations. Finally, because of the way rotation is
+implemented, the robot stays entirely within its footprint when it rotates.
+When combined with the safety of our navigation stack, this means that in-place
+rotation is always safe.
+
 
 \section{Scavenger Hunt Integration}\label{sec:scav}
 
