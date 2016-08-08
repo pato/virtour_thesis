@@ -1,6 +1,6 @@
-# Building Wide Intelligence: Virtour
+# Building-Wide Intelligence: Virtour
 
-Thesis defense in fulfillment of the Turing Scholars Honors Thesis requirement.
+In fulfillment of the Turing Scholars Honors Thesis requirement.
 
 ## Abstract
 
