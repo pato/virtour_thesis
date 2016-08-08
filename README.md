@@ -1,4 +1,4 @@
-# Building Wide Intelligene: Virtour
+# Building Wide Intelligence: Virtour
 
 Thesis defense in fulfillment of the Turing Scholars Honors Thesis requirement.
 
@@ -43,3 +43,11 @@ Dr. Robert Van de Geijn
 `make bibtex` - to compile bibtex and the document
 
 `make` - for latex changes only
+
+## Further Reading
+
+Virtour source code: https://github.com/utexas-bwi/bwi_common/tree/master/bwi_virtour
+
+SmallDNS source code: https://github.com/pato/smallDNS
+
+BWI Lab Webpage: http://www.cs.utexas.edu/~larg/bwi_web/
