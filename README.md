@@ -22,6 +22,8 @@ provide users an immersive telepresence system, which is safe to use, and
 provides a service to our lab and department by allowing anyone to visit to
 experience the areas first-hand.
 
+[Full Paper](https://github.com/pato/virtour_thesis/blob/master/main.pdf)
+
 ## Commitee
 
 Dr. Peter Stone (advisor)
