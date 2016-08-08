@@ -69,22 +69,21 @@ wheeled robots which can localize, navigate, and perform tasks without human
 intervention for long periods of time. Through the use of modern web and robot
 technologies, Virtour allows untrained public users to remotely control our
 robots in what we call a virtual tour. Our system is created under the
-principle of shared autonomy which aims to balance external control abilities
+principle of shared autonomy, which aims to balance external control abilities
 while maintaining our rigorous standard of safety and security for the robots
-and people involved. As such it gives the user control of what the robot is
-doing, while simultaneously using the existing the autonomous navigation
+and people involved. As such, it provides the user control over what the robot
+is doing, while simultaneously using the existing the autonomous navigation
 capabilities and obstacle avoidance to ensure safety and correct operation.
 
-The two major contributions of this work are as follows. First, the server and
-client framework for internet-based remote control operation of robots as
-described in Section \ref{sec:server}. This is a system that can be extended
-and used to expose arbitrary robot capabilities to the internet, and can be
-used for much more than just campus tours. Furthermore, this system was built
-with security in mind, as described in Section \ref{sec:security}, which makes
-it secure for public web deployment. Our second contribution is the novel
-approach to the user interface client which is designed to be accessible by all
-modern internet-capable devices and adheres to modern web 2.0 standards, as
-described in Section \ref{sec:client}.
+The two major contributions of this work are as follows. First, we present the
+server framework as described in Section \ref{sec:server}. This is system can
+be extended and used to expose arbitrary robot capabilities to the internet,
+and can be used for much more than just campus tours. Furthermore, this system
+was built with security in mind, as described in Section \ref{sec:security},
+which makes it secure for public web deployment. Our second contribution is the
+novel approach to the user interface client, which is designed to be accessible
+by all modern internet-capable devices and adheres to modern web 2.0 standards,
+as described in Section \ref{sec:client}.
 
 \section{Related Work}\label{sec:related}
 
@@ -93,7 +92,7 @@ virtual tour system was built to serve as a museum tour guide in 1998 by
 \citet{burgard1998}. Their robot, Rhino, operated mainly as a physically
 interactive tour guide that museum visitors could approach and request tours
 from, but also supported occasional web-based tours where online visitors could
-vote on certain tours to use. Their web-based interface provided images from
+vote on defined tours to spectate. Their web-based interface provided images from
 the on-board camera as well as static cameras placed throughout the museum, and
 allowed the user to download a Java applet to see real-time information. Web
 control was limited to voting on a desired tour (from a pre-programmed list)
@@ -111,50 +110,50 @@ a Java web-applet.
 \citet{kim2004} developed Jinny in 2004, which was yet another autonomous
 tour-guide robot. Their relevant contribution was the upgraded web-based
 interface which allowed the user to interact with a natural language parsing
-system to ask questions, as well as request actions. Their system was built
+system to ask questions, as well as request actions. Their system is built
 using Java and ActiveX, both of which require special installation for the
 users.
 
 Virtour differs from these related works in a number of ways. The first is that
 Virtour's main purpose is to be a telepresence tour system, and thus gives web
-visitors priority in controlling the robot (unlike Rhino or Minerva which only
-occasionally allow web control). The web system is unique in that it uses only
+visitors priority in controlling the robot (unlike Rhino or Minerva, which only
+occasionally allow web control). Our web client is unique in that it uses only
 modern web standards and does not require the end-user to download any extra
-software (e.g., Java, ActiveX). Thus Virtour can be truly portable and accessed
-from any computer, tablet, or mobile device. Virtour is also unique in that it
+software (e.g., Java, ActiveX). Thus, Virtour is truly portable and can accessed
+from any web-connected modern device. Virtour is also unique in that it
 provides the end-user with real-time video feedback and information about the
-robot. For example, the robot's position will be updated on the website in
+robot. For example, the robot's position is updated on the website in
 real-time without requiring any additional simulation software. Furthermore,
 the user's actions are performed in real-time and the results are shown almost
-immediately. So if a user request for the robot to rotate, he or she will be
+immediately; therefore, if a user request for the robot to rotate, he or she will be
 able to see the robot's camera feed update instantly. As part of Virtour's
 goal of ease of use, it uses bandwidth scaling of video streaming to reduce the
 quality of the video according to the end-user's internet connection. Finally,
-Virtour is novel because it provides the end-user with a wide variety of ways
+Virtour is novel because it provides the end user with a wide variety of ways
 of interacting with the robot. Rather than just providing navigation and video
 streaming, it allows the user to deliver spoken messages and perform tasks.
 
 \section{Building Wide Intelligence}\label{sec:bwi}
 
 Virtour is a part of the Building Wide Intelligence (BWI) project, which aims
-to develop fully autonomous mobile robots that exists as permanent inhabitants
-of UT's Computer Science departmental building. The BWI project focuses on the
+to develop fully-autonomous mobile robots that exists as permanent inhabitants
+of UT's Computer Science departmental building. The BWI project lies in the
 intersection of Artificial Intelligence and Robotics, and works to create
 robots that are useful as research platforms, as well as helpful to the humans
 in the building.
 
-Virtour runs on the BWI segbot robot platform --- our in-house robot
-platform which has been in development for over 4 years. Currently, our lab has
-four active robots. Three of the robots are based on the older generation
-hardware and software (version 2 as depicted in figure \ref{fig:segbotv2}) one
-of which is also equipped with a Kinova Mico Arm\footnote{the 6 degrees of
-freedom version which has a reach of 700 mm and a mid-range payload capacity of
-2.1 kg} (shown in figure \ref{fig:segbotarm}).  We have one version 3 robot
+Virtour runs on the BWI segbot robot platform --- our in-house robot platform
+which has been in development for over four years. Currently, our lab has four
+active robots. Three of the robots are based on the older generation hardware
+and software (version 2 as depicted in figure \ref{fig:segbotv2}) one of which
+is also equipped with a Kinova Mico Arm\footnote{This version of the Kinova arm
+has 6 degrees of freedom, a reach of 700 mm, and a mid-range payload capacity
+of 2.1 kg} (shown in figure \ref{fig:segbotarm}). We have one version 3 robot
 (depicted in figure \ref{fig:segbotv3}), which has been our pilot test as we
-transition all our robots to new hardware and software.  Virtour supports both
+transition all our robots to new hardware and software. Virtour supports both
 platform versions, and will adapt its features accordingly (based on which
 robot you connect to). However, since Virtour is mostly used on the version 3
-robot, we will describe only the latest hardware platform.
+robot, we will only describe the latest hardware platform.
 
 \begin{figure}[!tbp]
   \begin{subfigure}[b]{0.3\textwidth}
@@ -181,10 +180,10 @@ robot, we will describe only the latest hardware platform.
 \subsection{Hardware Platform}
 
 All of our robots are powered by the Segway Robotics Mobility Platform (RMP).
-Our latest generation robot uses the newer RMP 210 version which comes with two
+Our latest generation robot uses the newer RMP 210 version, which comes with two
 integrated lithium-ion batteries and can navigate at speeds up to 8
 m/s and carry up to 45 kg of payload. The frame was designed in-house
-and supports a wide array of sensors. For navigation, localization, and
+and supports a large number of sensors. For navigation, localization, and
 obstacle avoidance, we use a Velodyne VLP-16 Puck LIDAR. Point clouds (3D voxel
 map) and video data are provided by an Xtion Pro, a device very similar to the
 Microsoft Kinect. Our latest generation robots also have an additional Hokuyo
@@ -200,17 +199,18 @@ stationary.
 \subsection{Software Stack}
 
 Our robots's software architecture is based on the Robot Operating System (ROS)
-\citep{quigley2009}, which provides us with the infrastructure to run as a
-distributed node system, and provides the messaging framework to connect all
-the different components. ROS also provides us with access to many community
-packages such as device drivers, navigation implementations, and planning
-systems.
+built by \citet{quigley2009}, which provides us with both the infrastructure to
+run our robots as a distributed node system as well as the messaging framework
+to connect all the different components together. ROS also provides us with
+access to many community packages, such as device drivers, navigation
+implementations, and planning systems.
 
 Our robots use a hierarchical task-planning architecture for navigation
-planning \citep{zhang2014}. The navigation stack begins with the logical
-planner, which uses Answer Set Programming (ASP) to plan and describe the
-environment such as which corridors connect with which hallways, and which
-doors are open \citep{lifschitz2008}. It then moves to the logical navigator
+planning \citep{zhang2014}. A navigation request begins with the logical
+planner, which uses Answer Set Programming (ASP) to describe the environment
+\citep{lifschitz2008} -- such as which corridors connect with which hallways,
+and which doors are open -- and then uses the ASP solver CLINGO to generate
+possible plans \citep{gebser2014clingo}. It then moves to the logical navigator
 which uses current and previous laser readings (in the form of occupancy maps)
 and what it knows about the environment to create the navigation plan. Finally,
 the local planner uses the immediate sensor readings to send commands to the
@@ -226,28 +226,28 @@ binaries.\footnote{\url{http://wiki.ros.org/bwi} and
 \subsection{BWI Related Work}
 
 The BWI lab has done extensive work on the planning and learning of action
-cost. This enables our robots to plan high level tasks such as navigating to
+cost. This enables our robots to plan high-level tasks such as navigating to
 floors using hierarchical planning \citep{yang2014, khandelwal2014}. Using the
 robot's point-cloud sensors we also developed a system to perform human
 activity recognition \citep{gori2015robot}. We have also developed systems for
 multi-robot guidance that enable our robots to guide humans to their desired
 locations \citep{khandelwal2015, khandelwal2014multi}. The segbot arm robot has
 also allowed us to develop systems for grounded language learning by playing a
-game of I, Spy \citep{thomason2016} as well through human-robot dialog
+game of I Spy \citep{thomason2016} as well through human-robot dialog
 \citep{thomason2015learning}. Similarly, we used the robot arm to perform
 object exploration and ordering using haptic exploratory behaviors
 \citep{sinapov2016}.
 
 \section{The Web Client}\label{sec:client}
 
-Virtour consists of two platforms, the user facing client, and associated
+Virtour consists of two platforms: the user facing client, and associated
 software that runs on the robots. The user client is accessible from a web
-browser and is built using web 2.0 technologies to adhere to modern web
-development trends and simultaneously support as many platforms as possible. We
-decided to use a web-based client because of the increasing prominence of web
-browsers in people's lives. Furthermore, a web based approach means that our
-end-users do not have to install any additional software to connect with or use
-the robots, thus reducing the friction for trying our system.
+browser and is built using modern web frameworks to adhere to current web
+development standards and simultaneously support as many platforms as possible.
+We decided to use a web-based client because of the increasing prominence of
+web browsers in people's lives. Furthermore, a web based approach means that
+our end-users do not have to install any additional software to connect with or
+use the robots, thus reducing the friction for using our system.
 
 \subsection{Client Architecture}
 
@@ -259,7 +259,7 @@ navigation managers. All ROS requests are routed through
 roslibjs\footnote{\url{http://wiki.ros.org/roslibjs}} which serializes them and
 uses a SOCKET connection to send them to the robot. The image and video
 streaming are done without roslibjs for optimization reasons and are two
-separate connections to the robot. In total the web client communicates to the
+separate connections to the robot. In total, the web client communicates to the
 robot using three different connections. The hierarchy of components and connections
 can be seen in Figure \ref{fig:client}. 
 
@@ -277,24 +277,25 @@ can be seen in Figure \ref{fig:client}.
 The web client is designed to be simple and functional while still being
 aesthetically pleasing to end users. It uses a grid system powered by the
 popular front-end library Bootstrap
-2.0\footnote{\url{https://getbootstrap.com/}}, to create a fully responsive web
+2.0\footnote{\url{https://getbootstrap.com/}} to create a fully responsive web
 layout. This allows us to support any web-powered platform (e.g., mobile
 devices, tablets, and computers) by making the website scale and re-organize
 based on the specifications of the device such as the screen resolution and
-screen size (an example of scaling can be seen in Figure \ref{fig:homepage}).
+screen size. An example of responsive scaling can be seen in Figure
+\ref{fig:homepage}.
 
 When on the website, the user is greeted by a list of our currently active and
 available robots (as seen in Figure \ref{fig:homepage}). Each robot is
-represented by a name and associated picture\footnote{All of our robots are
-named after Futurama characters}. From here a user can select a robot to
-connect to by clicking on the robot's name or image. When the user clicks on
-the robot, the web client will initiate a tour request to the specified robot.
-If the connection is successful the client will switch into a tour session.
+represented by a name and associated picture. From here, a user can select a
+robot to connect to by clicking on the robot's name or image. When the user
+clicks on the robot, the web client will initiate a tour request to the
+specified robot.  If the connection is successful the client will switch into a
+tour session.
 
 Tour sessions can be either led or spectated. When spectating, the user has no
-control over the robot but can see the video stream, robot status, and track
-the location of the robot on the map in real time. When leading a tour the user
-can actively instruct the robot to perform operations. Each tour can have at
+control over the robot but can see the video stream, robot status, and the
+location of the robot on the map in real time. When leading a tour the user can
+actively instruct the robot to perform operations. Each tour can have at
 most one leader, but no limit to the number of spectators. We built Virtour
 this way to ensure there is a consistent leader experience (to avoid tour
 contention by multiple users), and for security reasons, since we can control
@@ -329,8 +330,8 @@ with the leader user interface (UI).
 \end{figure}
 
 The leader UI adds a number of components to that allow the user to control the
-operations of the robot. The current list of available remote-control
-capabilities is as follows
+operations of the robot. The list of available remote-control capabilities is
+as follows:
 
 \begin{itemize}
   \item Rotate the robot
@@ -363,9 +364,9 @@ interface accordingly to support whichever robot the user is connected to.
 
 To maintain leader consistency, the leader UI will ping the server at
 a known interval to ensure the leader is still connected. This allows the
-server to become aware of a dropped connection. So if the user closes the window
+server to become aware of a dropped connection. Thus, if the user closes the window
 or the ping fails, the leader will relinquish the leader status so other users
-can control robot.
+can control the robot.
 
 
 \subsection{Guest User Interface}
@@ -380,9 +381,9 @@ can control robot.
 
 The guest UI is the default interface presented to the user whenever he or she
 connects to a robot. The predominant view is the live stream from the robot's
-camera which is shown in the center. The robot's camera is placed strategically
-so as to provide the user with a point of view. This makes the user experience
-more realistic and makes the tour more engaging.
+camera, which is shown in the center. The robot's camera is placed
+strategically so as to provide the user with the robot's point of view. This
+makes the user experience more realistic and makes the tour more engaging.
 
 The interface also displays a mini map of the floor the robot is
 on, with a marker to indicate the robot's current position.  If the
@@ -390,7 +391,7 @@ robot navigates to another floor (via the elevator), Virtour will recognize the
 floor change and show the most up-to-date map of the current floor.
 
 Finally, the guest UI has a status box which displays whether or not a tour is
-on-going, allowed, or disabled. From here the user can request to become tour
+ongoing, allowed, or disabled. From here the user can request to become tour
 leader (if available), or wait for a tour to be available. All our robots have
 the guest UI enabled at all times, so that users can remotely connect to the
 robots and experience what they are doing. For privacy reasons, the robot will
@@ -484,7 +485,7 @@ that properly request it whenever tours are enabled.
 
 \subsubsection{Robot Control}
 
-The server-side code powering the remote robot control consist of various
+The server-side code powering the remote robot control consists of various
 service providers which use the tour manager to authenticate requests, and then
 translate them to the appropriate robot commands. For example, the rotate
 control will take the rotate command (if properly authenticated) and then
@@ -537,10 +538,10 @@ script is configured using a cronjob which runs every three minutes.
 In addition to the remote control capabilities available through our website,
 Virtour was also fully integrated with the Robot Scavenger Hunt
 by \citet{zhang2016}.  The Robot Scavenger Hunt is a framework of tasks that AI
-capable robots should be able to complete autonomously. These are used to
+capable robots can complete autonomously. These are used to
 evaluate and compare the performance of autonomous robots that reside in larger
-spaces and autonomously operate for long durations of times. We supported all
-four tasks in the task library which require the robot to find a human wearing
+spaces and operate autonomously for long durations of times. We supported all
+four tasks in the task library, which require the robot to find a human wearing
 a specific colored shirt, to follow a human for more than 10 meters, to deliver
 a given object, and to find a specific object. All four of these task
 variations require a certificate of work which are images of the task being
@@ -553,8 +554,8 @@ hunt, Virtour will detect the scavenger hunt and allow the users to interact
 with the scavenger hunt. For example, the user can see the list of the
 currently running tasks by clicking on the scavenger hunt button. The
 server-side portion of Virtour comes integrated with an HTTP image web server
-which is used to provide the user interface with images of the complete tasks.
-So if available, Virtour will display the certificates on the website as
+which is used to provide the user interface with images of the complete tasks, 
+so if available, Virtour will display the certificates on the website as
 thumbnails on the scavenger hunt task list (illustrated in Figure
 \ref{fig:scav}) but they can expanded to see the full-size image by clicking on
 them. Finally, if the user is the leader, they can also control the operation
