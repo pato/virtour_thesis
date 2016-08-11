@@ -53,3 +53,5 @@ Virtour source code: https://github.com/utexas-bwi/bwi_common/tree/master/bwi_vi
 SmallDNS source code: https://github.com/pato/smallDNS
 
 BWI Lab Webpage: http://www.cs.utexas.edu/~larg/bwi_web/
+
+Presentation: [PDF](https://github.com/pato/virtour_thesis/blob/master/presentation/virtour_slides.pdf) [Slides](https://docs.google.com/presentation/d/1yewvE9AfcayiMSI4uuSnMXOeq71xKsuzpmfNFR6CnxI/pub?start=false&loop=false&delayms=3000)
